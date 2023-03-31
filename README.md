@@ -4,4 +4,4 @@ __Purpose__: Clothing inventory web app that allows users to view the items in t
 
 __Goal__: By the middle of June, we'll have our completed app and have coded our clothing database. We also hope to have additional clothing features (e.g. spending tracker).
 
-__Technology Used__: Python, Flask (plan), SQL (plan), Bootstrap (plan)
+__Technology Used__: Python, Flask (plan), SQL (plan), HTML (plan), Bootstrap (plan)
