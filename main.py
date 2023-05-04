@@ -24,7 +24,7 @@ game= Game() # creating instance
 game.run() # running instances 
 
 
-
+hi = 9
 
 
 
