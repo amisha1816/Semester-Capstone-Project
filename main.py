@@ -23,8 +23,7 @@ class Game:
 game= Game() # creating instance
 game.run() # running instances 
 
-
-hi = 9
+hi = 'hi'
 
 
 
