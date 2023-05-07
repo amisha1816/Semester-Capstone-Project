@@ -18,6 +18,10 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         self.current_time=pg.time.get_ticks() # will be used when moving on to next animation 
         self.flip = 0 # just setting to 0 aka an empty value --> since if i give it value true/false initially.. after the left/right key is unpressed this goes back to the value assigned which is majorly screwing up character orientation
         
+        # player's tools
+        self.current_tool = 'watering can'
+        
+        
         animation_types=['Run','Harvesting','Idle']
         for animation in animation_types:
             temp_array=[] # we are first going to load the animation pics in here THEN append this to animation_array
@@ -70,6 +74,10 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
             self.update_action(2) # stop movind and idle 
         self.image=pg.transform.flip(self.image,self.flip,False) # based on direction of character, the image may need to be flipped
     
+        # tool use
+        if keys[pg.K_q]:
+            
+        
     def movement(self,delta_time):
         # moving in left/right
         self.position.x += self.direction.x*self.speed*delta_time # character location based on the direction character moving, the speed and the delta_time# delta_time helps with the movement of the object
