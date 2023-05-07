@@ -1,6 +1,7 @@
 #character
 import pygame as pg
 import os
+from timer import Timer
 
 class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for visible game objects
     # Sprite --> container class to hold and manage multiple Sprite objects
@@ -18,6 +19,11 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         self.current_time=pg.time.get_ticks() # will be used when moving on to next animation 
         self.flip = 0 # just setting to 0 aka an empty value --> since if i give it value true/false initially.. after the left/right key is unpressed this goes back to the value assigned which is majorly screwing up character orientation
         
+        #timers
+        self.timers = {
+            'tool use': Timer(60000,self.use_tool) #sets our timer for one minute 
+        }
+        
         # player's tools
         self.current_tool = 'watering can'
         
@@ -33,6 +39,9 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
                 temp_array.append(image)
             self.animation_array.append(temp_array)
 
+    def use_tool(self):
+        print(self.current_tool)
+                
     def updating_animation(self):
         animation_cooldown=50 # time for img lasts before going to next img ( idle.1 (wait 50 ms) idle.2 (wait 50ms) idle.3....)
         self.image=self.animation_array[self.action][self.index] # indexing our index --> eg self.animation_array has 3 lists in it so we using[self.action] to call a specfic list then [self.index] to call a spefic item of that list
@@ -76,6 +85,7 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
     
         # tool use
         if keys[pg.K_q]:
+            self.timers['tool use'].activate()
             
         
     def movement(self,delta_time):
