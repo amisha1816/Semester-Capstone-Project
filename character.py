@@ -84,8 +84,8 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         self.image=pg.transform.flip(self.image,self.flip,False) # based on direction of character, the image may need to be flipped
     
         # tool use
-        if keys[pg.K_q]:
-            self.timers['tool use'].activate()
+        if keys[pg.K_Q]:
+            self.timers['tool use'].start()
             
         
     def movement(self,delta_time):
