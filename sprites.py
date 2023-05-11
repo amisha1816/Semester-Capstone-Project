@@ -9,4 +9,7 @@ class Generic(pg.sprite.Sprite):
         self.rect = self.image.get_rect(topleft=pos)
         self.z = z
         
+        # Amisha added this part in on May 11!
+       self.hitbox = self.rect.copy().inflate(-self.rect.width * 0.2, -self.rect.height * 0.75)
+       # ** WILL NEED TO ADJUST NUMBERS BASED OF OUR ACTUAL SPRITES **
         
