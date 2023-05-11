@@ -2,6 +2,7 @@
 import pygame as pg
 import os
 from timer import Timer
+from setting import *
 
 class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for visible game objects
     # Sprite --> container class to hold and manage multiple Sprite objects
@@ -10,6 +11,7 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         # groups -->  allows you to hold and manage multiple Sprite objects
         self.image = pg.Surface((32,64)) # pg.Surface -> for representing images to create a new image object.
         self.rect=self.image.get_rect(center = location) # self.image.get_rect -> returns rect covering the entire surface
+        self.z = LAYERS['main'] # this means every sprite will have a z postion
         self.direction = pg.math.Vector2() # will be important when character turns and switches directions --> we will need to flip the sprite
         self.position = pg.math.Vector2(self.rect.center) # this is what controls/keeps track of our characters location--> can take floating points
         self.speed = 100
@@ -18,16 +20,21 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         self.index=0 # this is used to call specfic img for sprite animations
         self.current_time=pg.time.get_ticks() # will be used when moving on to next animation 
         self.flip = 0 # just setting to 0 aka an empty value --> since if i give it value true/false initially.. after the left/right key is unpressed this goes back to the value assigned which is majorly screwing up character orientation
-        
-        #timers
         self.timers = {
-            'tool use': Timer(60000,self.use_tool) #sets our timer for one minute 
+            'tool use': Timer(300,self.using_tool), #sets our timer for one minute 
+            'tool switch': Timer(200),
+            'seed use': Timer(300,self.using_seed), #sets our timer for one minute 
+            'seed switch': Timer(200)
+            
         }
-        
-        # player's tools
-        self.current_tool = 'watering can'
-        
-        
+        self.tool =['watercan']
+        self.tool_index=0
+        self.selected_tool = self.tool[self.tool_index]
+        self.seeds=['corn','tomatos']
+        self.seed_index=0
+        self.selected_seed = self.seeds[self.seed_index]
+
+
         animation_types=['Run','Harvesting','Idle']
         for animation in animation_types:
             temp_array=[] # we are first going to load the animation pics in here THEN append this to animation_array
@@ -35,27 +42,36 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
             num_of_frames = len(os.listdir(f'animations/{animation}')) ## counting the number of items in each animation folder 
             for num in range(1,num_of_frames): # the num above will be here so we can cycle through right num of animations for each folder -so we not calling img 14 in folder with only 10 img
                 image = pg.image.load(f'animations/{animation}/{animation} ({num}).png') #loading images from overall animation folder and then accessing the spefcic folder - ie animation/harvesting/harvesting (1).png
-                image = pg.transform.scale(image, (int(image.get_width() * 0.3), int(image.get_height()*0.3))) #scaling images down so they not massive
+                image = pg.transform.scale(image, (int(image.get_width() * 0.25), int(image.get_height()*0.25))) #scaling images down so they not massive
                 temp_array.append(image)
             self.animation_array.append(temp_array)
 
-    def use_tool(self):
-        print(self.current_tool)
-                
     def updating_animation(self):
-        animation_cooldown=50 # time for img lasts before going to next img ( idle.1 (wait 50 ms) idle.2 (wait 50ms) idle.3....)
+        animation_cooldown=40 # time for img lasts before going to next img ( idle.1 (wait 50 ms) idle.2 (wait 50ms) idle.3....)
         self.image=self.animation_array[self.action][self.index] # indexing our index --> eg self.animation_array has 3 lists in it so we using[self.action] to call a specfic list then [self.index] to call a spefic item of that list
         if pg.time.get_ticks() - self.current_time > animation_cooldown: # if the time now minus self.current_time is greater than 50.. time to move on to next image
             self.current_time = pg.time.get_ticks() # updating time
             self.index+=1
         if self.index == len(self.animation_array[self.action]):# if the index is greater than/equal to total num of img..then reset back to begining 
             self.index=0
+        if self.timers['tool use'].active: # checking if watercanning is being used rn is yah then....
+            self.index = 0 
+            self.update_action(1)
+            
+    def update_timer(self):
+        for timer in self.timers.values():
+            timer.update_tool()
 
     def update_action(self,new_action): # if we start moving we can no longer be at self.action(2) (idling) so we got to update it to moving (self.action(0))
         if new_action != self.action:
             self.action = new_action
             self.index = 0 # resetting index 
             self.current_time=pg.time.get_ticks() # resetting time
+
+    def using_tool(self):
+        pass
+    def using_seed(self):
+        pass
 
     def keyboard_input(self):
         keys= pg.key.get_pressed() # is a list that returns all the possible keys that can be pressed 
@@ -81,13 +97,30 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
             self.direction.x =0 # if character not moving left/right it is just staying still
         if self.direction.x == 0 and self.direction.y == 0:
             self.update_action(2) # stop movind and idle 
-        self.image=pg.transform.flip(self.image,self.flip,False) # based on direction of character, the image may need to be flipped
-    
-        # tool use
-        if keys[pg.K_Q]:
+        # for watercan movement
+        if keys[pg.K_SPACE]:
             self.timers['tool use'].start()
-            
-        
+            self.update_action(1)
+        if keys[pg.K_q] and not self.timers['tool switch'].active:
+            self.timers['tool switch'].start()
+            self.tool_index += 1
+            # if tool index > len of tools --> tool index =0
+            self.tool_index = self.tool_index if self.tool_index < len(self.tool) else 0
+            self.selected_tool = self.tool[self.tool_index]
+        # for seeds
+        if keys[pg.K_LCTRL]:
+            self.timers['seed use'].start()
+            print('seeeeed')
+            #self.update_action(3) --> after we add animation with seeds
+        if keys[pg.K_e] and not self.timers['seed switch'].active:
+            self.timers['seed switch'].start()
+            self.seed_index += 1
+            # if tool index > len of tools --> tool index =0
+            self.seed_index = self.seed_index if self.seed_index < len(self.seeds) else 0
+            self.selected_seed = self.seeds[self.seed_index]
+            print(self.selected_seed)
+        self.image=pg.transform.flip(self.image,self.flip,False) # based on direction of character, the image may need to be flipped
+          
     def movement(self,delta_time):
         # moving in left/right
         self.position.x += self.direction.x*self.speed*delta_time # character location based on the direction character moving, the speed and the delta_time# delta_time helps with the movement of the object
@@ -102,3 +135,4 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         self.updating_animation() 
         self.keyboard_input() # move method controls character movement therefore we call it in update method so characters movement shown
         self.movement(delta_time)
+        self.update_timer()
