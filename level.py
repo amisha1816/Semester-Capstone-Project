@@ -11,8 +11,13 @@ class Level:
         self.all_sprites= CameraGroup()
         #pg.sprite.Group() # Group important feauture of pg, helps us draw/update sprite actions
         # self.all_sprites will be the 'container' that stores our sprites
+        
+        # Amisha added this line on May 11
+        self.collision_sprites = pygame.sprite.Group() # creates a easily accessible list of our sprites that the player can collide into
+        
         self.setup()
         self.overlay = Overlay(self.character)
+        
     def setup(self):
         self.character = Character((320,320),self.all_sprites) # creating instances of character class
         Generic(
@@ -21,6 +26,8 @@ class Level:
             groups= self.all_sprites,
             z=LAYERS['ground'] ) # I ADDED THIS TODAY
         #self.character = Character((320,320),self.all_sprites) # creating instances of character class
+
+    
     def run(self,delta_time):
         self.surface_dimensions.fill('pink') # so we do not see preivious frame
         #self.all_sprites.draw(self.surface_dimensions) # we want our spirites to be drawn on self.surface_dimensions
