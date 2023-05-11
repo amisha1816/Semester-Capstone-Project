@@ -10,7 +10,15 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         super().__init__(group) # we pass group so when we create instance of this class, object will be inside our group
         # groups -->  allows you to hold and manage multiple Sprite objects
         self.image = pg.Surface((32,64)) # pg.Surface -> for representing images to create a new image object.
-        self.rect=self.image.get_rect(center = location) # self.image.get_rect -> returns rect covering the entire surface
+        self.rect=self.image.get_rect(center = location) # self.image.get_rect -> returns rect covering the entire surfac
+        
+        # Amisha coded this in on May 11 :)
+        self.hitbox = self.rect.copy().inflate((-126,-70))
+        # I'm pretty sure this section creates a rectangle around the player to check if the players is colliding with an object
+        
+        
+        
+        
         self.z = LAYERS['main'] # this means every sprite will have a z postion
         self.direction = pg.math.Vector2() # will be important when character turns and switches directions --> we will need to flip the sprite
         self.position = pg.math.Vector2(self.rect.center) # this is what controls/keeps track of our characters location--> can take floating points
@@ -122,15 +130,22 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         self.image=pg.transform.flip(self.image,self.flip,False) # based on direction of character, the image may need to be flipped
           
     def movement(self,delta_time):
+        
+        # Amisha added and adjusted this part on Thurs, May 11 :)
+        
         # moving in left/right
-        self.position.x += self.direction.x*self.speed*delta_time # character location based on the direction character moving, the speed and the delta_time# delta_time helps with the movement of the object
-        self.rect.centerx = self.position.x
+        self.position.x += self.direction.x*self.speed*delta_time # character location based on the direction character moving, the speed and the delta_time# delta_time helps with the movement of the objec
+        self.hitbox.centerx = round(self.pos.x) # moving the box
+        self.rect.centerx = self.hitboc.centerx
         # delta_time is important since it adds the delayed effect when character moves therefore makes it look more realistic
+        
         # moving up/down
         self.position.y += self.direction.y*self.speed*delta_time # character location based on the direction character moving, the speed and the delta_time# delta_time helps with the movement of the object
-        self.rect.centery = self.position.y
+        self.hitbox.centery = round(self.pos.y) # moving the box
+        self.rect.centery = self.hitboc.centery
         # We can just write write self.position together without breaking it into its components BUT when we factor in jumping, we need to only access the y coor
-    
+   
+        
     def update(self,delta_time): # will update our sprite --> this connects to update method on level
         self.updating_animation() 
         self.keyboard_input() # move method controls character movement therefore we call it in update method so characters movement shown
