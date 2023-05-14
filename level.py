@@ -1,7 +1,7 @@
 import pygame as pg
 from character import Character
 from overlay import Overlay
-from sprites import Generic
+from sprites import Generic, Flowers,Shitty_Trees
 from setting import *
 from pytmx.util_pygame import load_pygame
 
@@ -9,25 +9,47 @@ class Level:
     def __init__(self):
         self.surface_dimensions = pg.display.get_surface() # basically gets the screen dimensions from main.py
         self.all_sprites= CameraGroup()
+        self.collision_sprites = pg.sprite.Group()  # to keep track of what sprites CAN BE collided with
         #pg.sprite.Group() # Group important feauture of pg, helps us draw/update sprite actions
         # self.all_sprites will be the 'container' that stores our sprites
-        
-        # Amisha added this line on May 11
-        self.collision_sprites = pygame.sprite.Group() # creates a easily accessible list of our sprites that the player can collide into
-        
         self.setup()
         self.overlay = Overlay(self.character)
-        
     def setup(self):
-        self.character = Character((320,320),self.all_sprites) # creating instances of character class
-        Generic(
-            pos = (0,0),
-            surf=pg.image.load(f'background/background.jpg').convert_alpha(),
-            groups= self.all_sprites,
-            z=LAYERS['ground'] ) # I ADDED THIS TODAY
-        #self.character = Character((320,320),self.all_sprites) # creating instances of character class
+        tmx_data = load_pygame(f'map data/mappy map.tmx')
 
-    
+        #ground/grass
+        for layer in ['Grass','Grass detailing','Fence']:
+            for x,y,surf in tmx_data.get_layer_by_name(layer).tiles():
+                Generic((x*tile_size,y*tile_size),surf,self.all_sprites,LAYERS['ground'])
+        # flowers/trees
+        #for layer in ['Farmers market','Trees/flowers']:
+         #   for x,y,surf in tmx_data.get_layer_by_name(layer).tiles():
+          #      Generic((x*tile_size,y*tile_size),surf,[self.all_sprites,self.collision_sprites],LAYERS['Flowers/trees'])
+        for obj in tmx_data.get_layer_by_name('Flower obj'):
+            Flowers((obj.x,obj.y),obj.image,[self.all_sprites,self.collision_sprites])
+        for obj in tmx_data.get_layer_by_name('Tree obj'):
+            Shitty_Trees((obj.x,obj.y),obj.image,[self.all_sprites,self.collision_sprites])
+        #hills
+        for x,y,surf in tmx_data.get_layer_by_name('hills').tiles():
+                Generic((x*tile_size,y*tile_size),surf,self.all_sprites,LAYERS['Hills'])
+        #house
+        for x,y,surf in tmx_data.get_layer_by_name('House').tiles():
+            Generic((x*tile_size,y*tile_size),surf,self.all_sprites,LAYERS['House Walls/bottom'])
+        # furniture 
+        #house
+        for x,y,surf in tmx_data.get_layer_by_name('house stuff').tiles():
+            Generic((x*tile_size,y*tile_size),surf,self.all_sprites,LAYERS['Furniture'])
+        # water
+        for x,y,surf in tmx_data.get_layer_by_name('water').tiles():
+            Generic((x*tile_size,y*tile_size),surf,self.all_sprites,LAYERS['Water'])
+
+        self.character = Character((650,400),self.all_sprites,self.collision_sprites) # creating instances of character class
+        #Generic(
+         #   pos = (0,0),
+          #  surf=pg.image.load(f'background/background.jpg').convert_alpha(),
+           # groups= self.all_sprites,
+            #z=LAYERS['ground'] ) # I ADDED THIS TODAY
+        #self.character = Character((320,320),self.all_sprites) # creating instances of character class
     def run(self,delta_time):
         self.surface_dimensions.fill('pink') # so we do not see preivious frame
         #self.all_sprites.draw(self.surface_dimensions) # we want our spirites to be drawn on self.surface_dimensions
@@ -50,4 +72,3 @@ class CameraGroup(pg.sprite.Group):
                     offset_rect = sprite.rect.copy()
                     offset_rect.center -= self.offset
                     self.display_surface.blit(sprite.image,offset_rect) # and if it is ^ then i want to draw that layer # this does not change position, it just draws the sprite whenever sprite.rect will be
-
