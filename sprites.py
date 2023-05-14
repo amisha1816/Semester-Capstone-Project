@@ -1,5 +1,3 @@
-import pygame as pg
-
 from setting import *
 
 class Generic(pg.sprite.Sprite):
@@ -8,8 +6,13 @@ class Generic(pg.sprite.Sprite):
         self.image = surf
         self.rect = self.image.get_rect(topleft=pos)
         self.z = z
-        
-        # Amisha added this part in on May 11!
-       self.hitbox = self.rect.copy().inflate(-self.rect.width * 0.2, -self.rect.height * 0.75) # adjusting the size of the hitbox based off our sprites!
-       # ** WILL NEED TO ADJUST NUMBERS BASED OF OUR ACTUAL SPRITES **
-        
+        self.hitbox=self.rect.copy() #.inflate((-self.rect.width*0.25,-self.rect.height*0.75))
+
+class Flowers(Generic):
+    def __ini__(self,pos,surf,groups):
+        super().__init__(pos,surf,groups)
+        self.hitbox=self.rect.copy() #.inflate(-self.rect.width*0.5,-self.rect.height*0.75)
+class Shitty_Trees(Generic):
+    def __ini__(self,pos,surf,groups):
+        super().__init__(pos,surf,groups)
+        self.hitbox=self.rect.copy() #.inflate(-self.rect.width*0.5,-self.rect.height*0.75)
