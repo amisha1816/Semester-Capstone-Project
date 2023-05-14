@@ -27,7 +27,6 @@ _Week 3 (May 7 - 13)_  → Map/Land
  - Either we create our own map or we use tile map editor  AS ✅
  - Creating moving map  ✅ AS
       - essentially map is not restricted to the screen dimensions 
- - Character hitbox✅AM
  - Collisions with trees and flowers ✅AS
  - Creating buildings ( right now just code the buildings in - proper code for building will be done in week 4 and 6) AS ✅
  - Create map boundaries 
