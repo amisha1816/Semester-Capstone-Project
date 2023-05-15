@@ -30,7 +30,7 @@ _Week 3 (May 7 - 13)_  → Map/Land
  - Collisions with trees and flowers ✅AS
  - Creating buildings ( right now just code the buildings in - proper code for building will be done in week 4 and 6) AS ✅
  - Create map boundaries 
-      - After certain point character can not keep moving up/down in the map AM ❗❗
+      - After certain point character can not keep moving up/down in the map ✅AS
 
 _Week 4 (May 14 -20)_ → Barriers/Collisions 
  - Collision with buildings
