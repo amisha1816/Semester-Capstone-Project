@@ -37,7 +37,7 @@ _Week 4 (May 14 -20)_ → Barriers/Collisions
       - Character able to enter house and go inside  ❗❗
       - When character comes in contact with Farmers market, have some secondary page pop up ( right now focus on page actually showing up - further details will be coded  week 5) ❗❗
  - Collision with trees
-      - When the character collides with trees, have it so  they cannot just walk through it. ❗❗
+      - When the character collides with trees, have it so  they cannot just walk through it. ✅AS
 ***shouldn’t take all week - pretty simple tasks -  this is kind of a catch up week in case we took longer on previous weeks ***
 
 _Week 5 (May 21 - 27)_ → Crops + Inventory 
