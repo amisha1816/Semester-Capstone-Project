@@ -36,7 +36,7 @@ _Week 3 (May 7 - 13)_  → Map/Land
 
 _Week 4 (May 14 -20)_ → Barriers/Collisions 
  - Collision with buildings
-      - Character able to enter house and go inside  ❗❗ AS (PLAN)
+      - Character able to enter house and go inside  ✅AS
       - When character comes in contact with Farmers market, have some secondary page pop up ( right now focus on page actually showing up - further details will be coded  week 5) ❗❗ AM (PLAN)
  - Collision with trees
       - When the character collides with trees, have it so  they cannot just walk through it. ✅AS
