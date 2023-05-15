@@ -5,7 +5,6 @@ from level import Level
 class Game:
     def __init__(self): # initalizing the class
         pg.init() # initializing pygame
-        current_page = PageState()
         self.screen=pg.display.set_mode((1300,800)) # creating screen
         self.clock = pg.time.Clock()
         pg.display.set_caption('Farming Tales') # creates caption at top of game screen
@@ -38,16 +37,14 @@ class Game:
                 pg.display.update() # allows the background to update based on our actions
         
     
+    current_page = PageState()
+    
     def run(self): # method that allows our game to work
         while True:
             current_page.page_manager() # calls the page_manager method from main_page
             delta_time=self.clock.tick(60)/500 #help limit the runtime speed of a game
-            
-
 
 game= Game() # creating instance
 game.run() # running instances 
-
-
 
 
