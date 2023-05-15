@@ -16,6 +16,6 @@ Also, we need to add game_state.main_game() to our original while loop so we can
 🎉 Other content in the video: uploading text files to display, how to create a statemanger (❗)
 ![image](https://github.com/amisha1816/Semester-Capstone-Project/assets/129302600/8ad0b99d-f9bc-4301-bb38-fcbe4d8622df)
 
-#### collision
-![image](https://github.com/amisha1816/Semester-Capstone-Project/assets/129302600/334fbdec-ffe3-4b7c-9c61-69b7a2b88df4)
+#### collisions
+![image](https://github.com/amisha1816/Semester-Capstone-Project/assets/129302600/334fbdec-ffe3-4b7c-9c61-69b7a2b88df4)  
 *this is how the tutorial did it, we're going to have to adjust it with our ```farmet's market button```
