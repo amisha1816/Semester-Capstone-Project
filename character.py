@@ -127,14 +127,14 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         for sprite in self.collision_sprites.sprites():
             if hasattr(sprite,'hitbox'): # hasattr means "has attribute"
                 if sprite.hitbox.colliderect(self.hitbox): #colliderect detects collisions between rectangles 
-                    if direction == 'horizontal':
-                        if self.direction.x >0: # moving right
-                            self.hitbox.right=sprite.hitbox.left
-                        if self.direction.x < 0: # moving left
-                            self.hitbox.left = sprite.hitbox.right
-                        self.rect.centerx = self.hitbox.centerx # saying whereever character appears, we want hitbox to appear
-                        self.position.x = self.hitbox.centerx
-
+                    if direction == 'vertical':
+                        if self.direction.y <0: # moving up
+                            self.hitbox.top= sprite.hitbox.bottom
+                        if self.direction.y >0: # moving down
+                            self.hitbox.bottom=self.hitbox.top
+                        self.rect.centery = self.hitbox.centery # saying whereever character appears, we want hitbox to appear
+                        self.position.y = self.hitbox.centery
+                        
     def movement(self,delta_time):
         # moving in left/right
         self.position.x += self.direction.x*self.speed*delta_time # character location based on the direction character moving, the speed and the delta_time# delta_time helps with the movement of the object
@@ -142,11 +142,12 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         self.rect.centerx = self.hitbox.centerx
         self.collide('horizontal')
         # delta_time is important since it adds the delayed effect when character moves therefore makes it look more realistic
+        
         # moving up/down
         self.position.y += self.direction.y*self.speed*delta_time # character location based on the direction character moving, the speed and the delta_time# delta_time helps with the movement of the object
         self.hitbox.centery=round(self.position.y)
         self.rect.centery = self.hitbox.centery
-        # We can just write write self.position together without breaking it into its components BUT when we factor in jumping, we need to only access the y coor
+        self.collide('vertical')
     
     def update(self,delta_time): # will update our sprite --> this connects to update method on level
         self.updating_animation() 
