@@ -16,3 +16,7 @@ class Shitty_Trees(Generic):
     def __ini__(self,pos,surf,groups):
         super().__init__(pos,surf,groups)
         self.hitbox=self.rect.copy() #.inflate(-self.rect.width*0.5,-self.rect.height*0.75)
+class Idiotic_Farmers_Market(Generic):
+     def __ini__(self,pos,surf,groups):
+        super().__init__(pos,surf,groups)
+        self.hitbox=self.rect.copy().inflate((self.rect.width*1.5,self.rect.height*1.5))
