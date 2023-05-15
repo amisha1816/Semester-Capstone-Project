@@ -1,7 +1,7 @@
 import pygame as pg
 from character import Character
 from overlay import Overlay
-from sprites import Generic, Flowers,Shitty_Trees,Idiotic_Farmers_Market
+from sprites import Generic, Flowers,Shitty_Trees,Idiotic_Farmers_Market, Idiotic_Walls
 from setting import *
 from pytmx.util_pygame import load_pygame
 
@@ -35,9 +35,12 @@ class Level:
          # farmers market
         for obj in tmx_data.get_layer_by_name('Farmers market'):
             Idiotic_Farmers_Market((obj.x,obj.y),obj.image,[self.all_sprites,self.collision_sprites])
-        #house
+        #house door
         for x,y,surf in tmx_data.get_layer_by_name('House').tiles():
             Generic((x*tile_size,y*tile_size),surf,self.all_sprites,LAYERS['House Walls/bottom'])
+        # hosue walls
+        for obj in tmx_data.get_layer_by_name('Housey'):
+            Idiotic_Walls((obj.x,obj.y),obj.image,[self.all_sprites,self.collision_sprites])
         # furniture 
         #house
         for x,y,surf in tmx_data.get_layer_by_name('house stuff').tiles():
