@@ -1,4 +1,4 @@
-#### How to code a pop up screen 🌷 AM
+### How to code a pop up screen 🌷 AM
 
 📎 https://www.youtube.com/watch?v=j9yMFG3D7fg by Clear Code  
  
@@ -14,5 +14,8 @@ To make the method an object we just need to add the line ```game_state = GameSt
 Also, we need to add game_state.main_game() to our original while loop so we can change the screens.
 
 🎉 Other content in the video: uploading text files to display, how to create a statemanger (❗)
+![image](https://github.com/amisha1816/Semester-Capstone-Project/assets/129302600/8ad0b99d-f9bc-4301-bb38-fcbe4d8622df)
 
-> overall this doesn't seem too challenging other than the amount of animations we'll need to include for the farmer's market
+#### collision
+![image](https://github.com/amisha1816/Semester-Capstone-Project/assets/129302600/334fbdec-ffe3-4b7c-9c61-69b7a2b88df4)
+*this is how the tutorial did it, we're going to have to adjust it with our ```farmet's market button```
