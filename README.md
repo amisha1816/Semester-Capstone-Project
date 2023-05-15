@@ -24,14 +24,15 @@ _Week 2 (Apr 30 - May 6)_ → Character
 
 _Week 3 (May 7 - 13)_  → Map/Land
  - Create map using tileset assets AS ✅
- - Either we create our own map or we use tile map editor  AS ✅
+ - Use "Tiled" to create map AS ✅
+     - Need to learn how to create different tile and object layers AS ✅
+     - Learn how to connect "Tiled" map to code AS ✅
  - Creating moving map  ✅ AS
       - essentially map is not restricted to the screen dimensions 
  - Collisions with trees and flowers ✅AS
  - Creating buildings ( right now just code the buildings in - proper code for building will be done in week 4 and 6) AS ✅
  - Create map boundaries 
-      - After certain point character can not keep moving up/down in the map ✅AS
-
+      - After certain point character can not keep moving up/down in the map ❗❗
 _Week 4 (May 14 -20)_ → Barriers/Collisions 
  - Collision with buildings
       - Character able to enter house and go inside  ❗❗
