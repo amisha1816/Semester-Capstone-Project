@@ -71,7 +71,7 @@ def main_page(): # method that runs the main page of our game
             # THIS IS A DIRECT COPY OF HIS CODE, WE WOULD NEED TO CHANGE OURS
             if event.type == pg.MOUSEBUTTONDOWN:
                 if PLAY_BACK.checkForInput(PLAY_MOUSE_POS):
-                    main_menu()
+                    main_page()
 
         pg.display.update() # allows the background to update based on our actions
  
