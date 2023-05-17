@@ -6,6 +6,7 @@ pg.init() # initializing pygame
 screen = pg.display.set_mode((1300,800)) # creating screen
 clock = pg.time.Clock()
 pg.display.set_caption('Farming Tales')
+level = Level() 
         
 def main_page(): # method that runs the main page of our game
     while True:
@@ -15,7 +16,6 @@ def main_page(): # method that runs the main page of our game
                 sys.exit() # allows us to end the program
             
         delta_time=clock.tick(120)/500
-        level = Level()
         level.run(delta_time)
         pg.display.update() # allows the background to update based on our actions
  
