@@ -19,3 +19,12 @@ Also, we need to add game_state.main_game() to our original while loop so we can
 #### collisions
 ![image](https://github.com/amisha1816/Semester-Capstone-Project/assets/129302600/334fbdec-ffe3-4b7c-9c61-69b7a2b88df4)  
 *this is how the tutorial did it, we're going to have to adjust it with our ```farmet's market button```
+
+## Inventory screen AS
+ https://www.youtube.com/watch?v=Q5Qyk-05sc4 
+ - explains basics of how to code an inventory class
+    - for the parameters we need to pass "name" and "pos" 
+        - 'name' is for the name of item we accessing while "pos" is where we want to place the item 
+    - in __init__ function we should load in the images of all items we could possibely have in our class and get its rect
+         - self.image=pg.image.load(name)
+    - 
