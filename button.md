@@ -77,14 +77,22 @@ Version 3
 class Button(): # Class that allows the player can press buttons
     def __init__(self, image, x, y, pressed):
         self.image = image 
-        self.pressed = False
-        
-        # coordinates
-        self.x_pose = x_pos
+        self.pressed = pressed
+        self.x_pos = x_pos
         self.y_pos = y_pos
+        
         self.rect = self.image.get_rect()
+        self.draw()
 
     def draw(self, surface): 
+        
+        # creating button display (will need to adjust this to our liking 🌱)
+        button_text = font.render(self.text, True, 'black')
+        button_rect = pg.rect.Rect((self.x_pos, self.y_pos), (150, 25)
+        pg.draw.rect(screem, 'yellow', button_rect, 0, 10)                          
+        surface.blit(self.text, (self.rect.x, self.rect.y)) # place button on screen
+        
+                                   
         action = False
         
         pos = pg.mouse.get_pos() # finds mouse position
@@ -93,9 +101,7 @@ class Button(): # Class that allows the player can press buttons
                 # pg method that checks if a left click is happening
                 action = True
                 
-        # place button on screen
-        surface.blit(self.image, (self.rect.x, self.rect.y))
-        
+
         return action # action will be opening up a new screen
 
 
