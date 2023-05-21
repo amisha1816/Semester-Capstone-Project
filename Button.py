@@ -7,15 +7,15 @@ class Button(): # Class that allows the player can press buttons
     def __init__(self, image, x_pos, y_pos, text_input):
         self.image = image # allows us to show user's our button image
 
-     # coordinates
-    self.x_pose = x_pos
-    self.y_pos = y_pos
-    self.rect = self.image.get_rect (center = (self.x_pos, self.y_pos))
+        # coordinates
+        self.x_pose = x_pos
+        self.y_pos = y_pos
+        self.rect = self.image.get_rect(center = (self.x_pos, self.y_pos))
 
-     # text
-    self.text_input = text_input # allows us to store text_input in an object
-    self.text = main_font.render(self.text_input, True, "yellow")
-    self.text_rect = self.text.get_rect(center = (self.x_pos, self.y_pos))
+         # text
+        self.text_input = text_input # allows us to store text_input in an object
+        self.text = main_font.render(self.text_input, True, "yellow")
+        self.text_rect = self.text.get_rect(center = (self.x_pos, self.y_pos))
  
 def update(self): # allows us to place image along with text on screen
     screen.blit(self.image, self.rect) # allows us to put our image onto the game screen
