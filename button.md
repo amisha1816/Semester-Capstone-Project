@@ -48,6 +48,15 @@ class Button(): # Class that allows the player can press buttons
         b_text = font.render(self.text, True, 'black')
         b_rect = pg.image.rect.Rect((self.x_pos, self.y_pos), (100, 20))
         
+        if self.work:
+            if self.check_press():
+                pg.draw.rect(screen, 'yellow', b_rect, 0, 10)
+            else:
+                pg.draw.rect(screen, 'red', b_rect, 0, 10)
+        
+        else:
+            pg.draw.rect(screen, 'black', b_rect, 0, 10)
+            
         pg.draw.rect(screen, 'red', b_rect, 0, 10)
         screen.blit(b_text, (self.x_post + 3, self.y_pos))
 
