@@ -1,9 +1,4 @@
 
-### Main
-https://www.youtube.com/watch?v=G8MYGDf_9ho
-
-```python
-
 # imports
 import pygame as pg
 import sys
