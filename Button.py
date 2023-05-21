@@ -23,7 +23,9 @@ def update(self):
 
 def mouse_check(self, position):
     if position[0] in range(self.rect.left, self.rect.right) and position[1] in range(self.rect.top, self.rect.bottom): # checks if the mouse's position is in the button's area
-        print("The button has been pressed")f
+        print("The button has been pressed")
+        return True
+    return False
 
 button_display = pg.image.load(#____add in button title____)
 # add in line adjusting the size of the button using pg.transform.scale
