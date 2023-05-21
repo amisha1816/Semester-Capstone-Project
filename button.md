@@ -1,6 +1,7 @@
 ### Button Work (🌷 AM)
 https://www.youtube.com/watch?v=16DM5Eem0cI
 
+
 Version 1
 
 ```python
@@ -68,7 +69,34 @@ class Button(): # Class that allows the player can press buttons
             return True
         else:
             return False
+```
 
+Version 3
+
+```python
+class Button(): # Class that allows the player can press buttons
+    def __init__(self, image, x, y, pressed):
+        self.image = image 
+        self.pressed = False
+        
+        # coordinates
+        self.x_pose = x_pos
+        self.y_pos = y_pos
+        self.rect = self.image.get_rect()
+
+    def draw(self, surface): 
+        action = False
+        
+        pos = pg.mouse.get_pos() # finds mouse position
+        if self.rect.collidepoint(pos): # checks if mouse is mouse touching button's rect
+            if pg.mouse.get_pressed()[0] == 1 and self.pressed == False:
+                # pg method that checks if a left click is happening
+                action = True
+                
+        # place button on screen
+        surface.blit(self.image, (self.rect.x, self.rect.y))
+        
+        return action # action will be opening up a new screen
 
 
 
