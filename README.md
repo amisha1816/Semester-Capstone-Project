@@ -46,9 +46,14 @@ _Week 4 (May 14 -20)_ → Barriers/Collisions
 
 _Week 5 (May 21 - 27)_ → Crops + Inventory 
  - Code crops collision so we can:
-      - Code planting crops, crops growing, crops being harvested ❗❗
-      - Code in feature that we can use tools to mine crops  ❗❗
-      - They need certain amount of hits or something ❗❗
+      - Code:
+            -  planting crops ❗❗ AS
+            -  crops appearing  ✅AS 
+                 - i coded that apples appear rn ✅AS 
+            -  crops being harvested ❗❗ AS
+      - Code in feature that we can use tools to mine crops  ❗❗ AS
+      - They need certain amount of hits or something ❗❗ AS
+    
  - Code inventory:
       - Will need a button on screen that allows us to access our inventory and tells us how much of each item we have ❗❗
       - Will need feature where we can select seeds that we can use to plant❗❗
