@@ -18,3 +18,7 @@ LAYERS = { # layers are in level of what is at the bottom to what is on top
     'Furniture': 5,
     'main': 6
 }
+
+APPLE_POSITION= {
+    'tree': [(-5,78),(18,17),(50,27),(30,37),(80,47),(90,10)]
+}
