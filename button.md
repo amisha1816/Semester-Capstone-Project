@@ -79,6 +79,7 @@ Version 3
 import pygame as pg
 from setting import * 
 screen = pg.display.set_mode((w,h))
+font_name = pg.font.match_font("ariel")
 
 class Button(): # Class that allows the player can press buttons
     def __init__(self, x_pos, y_pos, text): # initializing the class
@@ -86,17 +87,15 @@ class Button(): # Class that allows the player can press buttons
         self.x_pos = x_pos
         self.y_pos = y_pos
         self.text = text
-        self.font_name = pg.font.match_font("ariel")
         self.draw() # automatically calls the draw method once the Button is initialized
 
     def draw(self):
         
         # Creating our button's display
-        font = pg.font.Font(self.font_name,18)
         b_text = font.render(self.text, True, 'black')
-        ! b_rect = pg.image.rect.Rect((self.x_pos, self.y_pos), (100, 20))
+        b_rect = pg.rect.Rect((self.x_pos, self.y_pos), (100, 20))
         pg.draw.rect(screen, 'pink' b_rect, 0, 5)
-        b_rect = pg.draw.rect(screen, 'pink', (100, 20))
+        screen.blit(b_text, (self.x_pos + 3, self.y_pos + 3))
          
     def check_press(self): # checks if the button has been clickes
         mouse_position = pg.mouse.get_pos() # returns the current position of mouse
