@@ -10,8 +10,6 @@ screen = pg.display.set_mode((1300,800)) # creating screen
 pg.display.set_caption('Farming Tales')
 clock = pg.time.Clock()
 level = Level()
-#town_button = pressed
-new_press = True # checks if we just pressed the button
     
 # Game loop  
 run = True 
@@ -20,6 +18,8 @@ while run:
     town_button = Button( 10, 20,"Town Button")
     fm_button = Button(30, 30,"Farmer's Market")
 
+    town_button.check_press()
+    fm_button.check_press()
     # Checks if buttons have been clicked
     #if pg.mouse.get_pressed()[0] and new_press:
      #   new_press = False
