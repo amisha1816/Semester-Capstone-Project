@@ -94,6 +94,8 @@ class Button(): # Class that allows the player can press buttons
         # Creating our button's display
         font = pg.font.Font(self.font_name,18)
         b_text = font.render(self.text, True, 'black')
+        ! b_rect = pg.image.rect.Rect((self.x_pos, self.y_pos), (100, 20))
+        pg.draw.rect(screen, 'pink' b_rect, 0, 5)
         b_rect = pg.draw.rect(screen, 'pink', (100, 20))
          
     def check_press(self): # checks if the button has been clickes
