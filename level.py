@@ -12,6 +12,7 @@ class Level:
         self.collision_sprites = pg.sprite.Group()  # to keep track of what sprites CAN BE collided with
         #pg.sprite.Group() # Group important feauture of pg, helps us draw/update sprite actions
         # self.all_sprites will be the 'container' that stores our sprites
+        self.tree_sprites = pg.sprite.Group() # will be used to help player know where trees are 
         self.setup() # callings method so all tiled features appear
         self.overlay = Overlay(self.character)
         
@@ -46,7 +47,11 @@ class Level:
         for x,y,surf in tmx_data.get_layer_by_name('water').tiles():
             Generic((x*tile_size,y*tile_size),surf,self.all_sprites,LAYERS['Water'])
         # characterrrrr
-        self.character = Character((1550,1400),self.all_sprites,self.collision_sprites) # creating instances of character class
+        self.character = Character(
+            location = (1550,1400),
+            group = self.all_sprites,
+            collision_sprites = self.collision_sprites,
+            trees = self.tree_sprites)  # creating instances of character class
         
     def run(self,delta_time):
         #self.all_sprites.draw(self.surface_dimensions) # we want our spirites to be drawn on self.surface_dimensions
