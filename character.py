@@ -6,17 +6,17 @@ from setting import *
 
 class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for visible game objects
     # Sprite --> container class to hold and manage multiple Sprite objects
-    def __init__(self,location,group,collision_sprites):
+   def __init__(self,location,group,collision_sprites,trees):
         super().__init__(group) # we pass group so when we create instance of this class, object will be inside our group
         # groups -->  allows you to hold and manage multiple Sprite objects
         self.image = pg.Surface((32,64)) # pg.Surface -> for representing images to create a new image object.
         self.rect=self.image.get_rect(center = location) # self.image.get_rect -> returns rect covering the entire surface
-        self.hitbox=self.rect.copy().inflate((-150,-90)) # we are making a collision dector by first copying the characters rect and the "inflating" said rectangle by sizing it down
+        self.hitbox=self.rect.copy() #.inflate((-52,-57)) # we are making a collision dector by first copying the characters rect and the "inflating" said rectangle by sizing it down
         self.collision_sprites = collision_sprites
         self.z = LAYERS['main'] # this means every sprite will have a z postion
         self.direction = pg.math.Vector2() # will be important when character turns and switches directions --> we will need to flip the sprite
         self.position = pg.math.Vector2(self.rect.center) # this is what controls/keeps track of our characters location--> can take floating points
-        self.speed = 100
+        self.speed = 150
         self.animation_array=[] # making this as 'self' so can be called in other methods 
         self.action=2 # self.action=0 --> run self.action=1--> harvesting self.action=2 --> idle (based on animation_types list below)
         self.index=0 # this is used to call specfic img for sprite animations
@@ -27,15 +27,17 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
             'tool switch': Timer(200),
             'seed use': Timer(300,self.using_seed), #sets our timer for one minute 
             'seed switch': Timer(200)
-            
         }
-        self.tool =['watercan']
+
+        self.tool =['watercan','axe']
         self.tool_index=0
         self.selected_tool = self.tool[self.tool_index]
+
         self.seeds=['corn','tomatos']
         self.seed_index=0
         self.selected_seed = self.seeds[self.seed_index]
 
+        self.tree_sprites = trees
 
         animation_types=['Run','Harvesting','Idle']
         for animation in animation_types:
