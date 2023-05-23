@@ -15,7 +15,7 @@ level = Level()
 run = True 
 while run:
     # button creation using button class 
-    town_button = Button( 10, 20,"Town Button")
+    town_button = Button(10, 20,"Town Button")
     fm_button = Button(30, 30,"Farmer's Market")
 
     town_button.check_press()
