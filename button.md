@@ -70,8 +70,13 @@ class Button(): # Class that allows the player can press buttons
             # this is where we would put the code to change the screen to the farmer's market
         else:
             return False
- # Version 3
- import pygame as pg
+ ```
+ 
+Version 3
+
+```python
+
+import pygame as pg
 from setting import * 
 screen = pg.display.set_mode((w,h))
 
@@ -89,20 +94,13 @@ class Button(): # Class that allows the player can press buttons
         # Creating our button's display
         font = pg.font.Font(self.font_name,18)
         b_text = font.render(self.text, True, 'black')
-        b_rect = pg.rect.Rect((self.x_pos, self.y_pos), (100, 20)) # creating button's rect, coordinates (x_pos, y_post) + size
-       
-
-        if self.check_press():
-            pg.draw.rect(screen, 'pink', b_rect, 0, 10) # make's our button display to be pink when clicked
-        else:
-            pg.draw.rect(screen, 'yellow', b_rect, 0, 10) # make's our button display to be yellow when not clicked  
-            screen.blit(b_text, (self.x_pos + 2, self.y_pos + 2))
-        
+        b_rect = pg.draw.rect(screen, 'pink', (100, 20))
+         
     def check_press(self): # checks if the button has been clickes
         mouse_position = pg.mouse.get_pos() # returns the current position of mouse
         left_click = pg.mouse.get_pressed()[0]
         b_rect = pg.rect.Rect((self.x_pos, self.y_pos), (100, 20))
-        if left_click and b_rect.collidepoint(mouse_position) and self.enabled: # checking to see if the player has clicked an enabled button
+        if left_click and b_rect.collidepoint(mouse_position):
             return True
             # this is where we would put the code to change the screen to the farmer's market
         else:
