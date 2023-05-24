@@ -199,3 +199,41 @@ while True:
 Version 5
 
 ```python
+
+# basic set-up
+import sys
+import pygame as pg 
+from setting import *
+objects = []
+
+# configuration
+pg.init()
+clock = pg.time.Clock()
+screen = pg.display.set_mode((w, h))
+font = pg.font.SysFont('Cambria', 18)
+
+# boolutton class
+class Button(): # Class that allows the player can press buttons
+    def __init__(self, x, y, text): # initializing the class
+        self.x = x
+        self.y = y
+        self.text = text
+
+    # new attempt at placing button on screen
+    self.button_surface = pg.Surface((10, 20))
+    self.button_rect = pg.Rect(x, y, 10, 20)
+    self.button_text = font.render(text, True, 'black')
+    objects.append(self)
+    
+    # checks for clicks and blits text and button to the screen
+    def process(self):
+        mouse_pos = pg.mouse
+        if self.button_rect.collidepoint(mouse_pos):
+            return True
+        else:
+            return False
+
+        # blitting the text onto our screen
+        screen.blit(self.button_surface, self.button_rect)
+        screen.blit(self.button_text, (self.x + 3, self.y + 3))
+```
