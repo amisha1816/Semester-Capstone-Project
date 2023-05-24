@@ -16,7 +16,7 @@ class Flowers(Generic):
         self.hitbox=self.rect.copy() #.inflate(-self.rect.width*0.5,-self.rect.height*0.75)
         
 class Shitty_Trees(Generic):
-    def __init__(self,pos,surf,groups):
+    def __init__(self,pos,surf,groups,add_shit_from_tree):
         super().__init__(pos,surf,groups)
 
         # tree shit
@@ -25,20 +25,21 @@ class Shitty_Trees(Generic):
         self.tree_stump = pg.image.load(f'Sprout Lands - Sprites - Basic pack/Objects/tree stump.png')
         self.tree_timer = Timer(200)
         self.hitbox=self.rect.copy() #.inflate(-self.rect.width*0.5,-self.rect.height*0.75)
-        
         # applesss
         self.apple_surface = pg.image.load(f'Sprout Lands - Sprites - Basic pack/Objects/apple.png') # loading in apple image
         self.apple_position = APPLE_POSITION['tree'] # calling the apple position dictionary from settings - this determines where the apples will go on tree
         self.apple_sprites = pg.sprite.Group() # giving the apple images there on sprite group to make it easier to manage 
         self.more_fruit()
-        
-     def tree_hits(self):
+        self.add_shit_from_tree = add_shit_from_tree
+
+    def tree_hits(self):
         self.health -= 1
         # for removing an apple
         if len(self.apple_sprites.sprites()) > 0: # checking how many apples left on tree, if there are no apples then yah
             random_apple = choice(self.apple_sprites.sprites()) # this selects a random apple from tree to kill off in next line
+            self.add_shit_from_tree('apple') # means that every apple that is "hit" will be "added" to our inventory now 
             random_apple.kill() # removing apple from the screen
-
+            
     def more_fruit(self):
         for pos in self.apple_position:
             if randint(0,10) < 4: # this helps limit how many apples are being spawned 
@@ -52,8 +53,9 @@ class Shitty_Trees(Generic):
                 #this is important so the apples are visable
                 z = LAYERS['fruit'])
                 
-      def is_tree_alive(self):
+    def is_tree_alive(self):
         if self.health <= 0: # essentially when the tree "dies" and we get the required amount of hits..
+            self.add_shit_from_tree('tree wood')
             self.image = self.tree_stump # we are calling the tree stump pic
             self.rect = self.image.get_rect(midbottom = self.rect.midbottom) # and since we are changing the image, we need to redefine/remake the image rect
             self.hitbox = self.rect.copy().inflate(-10,-self.rect.height*0.6)
