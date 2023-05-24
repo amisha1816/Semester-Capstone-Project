@@ -80,7 +80,7 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         if self.selected_tool == 'axe' and keys[pg.K_a]:
             for tree in self.tree_sprites.sprites(): # if there are still trees in this group
                 if tree.rect.collidepoint(self.target_location):
-                    tree.damage()
+                    tree.tree_hits()
                     print('hit')
              
     def get_target_location(self):
