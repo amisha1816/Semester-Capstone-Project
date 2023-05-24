@@ -51,6 +51,7 @@ _Week 5 (May 21 - 27)_ → Crops + Inventory
             -  crops appearing  ✅AS 
                  - i coded that apples appear rn ✅AS 
             -  crops being harvested ❗❗ AS
+            -  harvesting animation ✅AS 
       - Code in feature that we can use tools to mine crops  ❗❗ AS
       - They need certain amount of hits or something ❗❗ AS
     
