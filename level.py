@@ -74,3 +74,10 @@ class CameraGroup(pg.sprite.Group):
                     offset_rect = sprite.rect.copy()
                     offset_rect.center -= self.offset
                     self.display_surface.blit(sprite.image,offset_rect) # and if it is ^ then i want to draw that layer # this does not change position, it just draws the sprite whenever sprite.rect will be
+                # to see character hitbox and rectangle --> for now it is commented out but it useful to check when looking at collisions
+                # if sprite == character:
+                 #    pg.draw.rect(self.display_surface,'red',offset_rect,5)
+                  #    hitbox_rect = character.hitbox.copy()
+                   #   hitbox_rect.center = offset_rect.center 
+                    #  pg.draw.rect(self.display_surface,'green',hitbox_rect,5)
+                      
