@@ -11,49 +11,52 @@ __Coding Language__: Python
 __Schedule__:
 *just used to assign tasks for us and to manage who is doing/completing what*
 
-_Week 1 (Apr 23 - 29)_ → Watch tutorials on how to use pygame AS/AM✅
+Legend:
+Aroush →  🦋 AS
+Amisha →  🌷 AM
+
+_Week 1 (Apr 23 - 29)_ → Watch tutorials on how to use pygame 🦋 AS / 🌷 AM
 
 _Week 2 (Apr 30 - May 6)_ → Character
- - Ability to move  ✅ AS
- - Sprite animation ✅ AS
+ - Ability to move  🦋 AS
+ - Sprite animation 🦋 AS
  - Main character
      - Ability to use tools when key pressed 
-     - For basic tools like shovels we can just code when the letter “w’ is pressed it appears and starts working. For other other tools, players will need to specifically        access inventory ( coming in week 5) ✅ AS
-     - Make tools appear on main screen ✅ AS
- - Timer for tools ✅AS / AM 
+     - For basic tools like shovels we can just code when the letter “w’ is pressed it appears and starts working. For other other tools, players will need to specifically        access inventory ( coming in week 5) 🦋 AS
+     - Make tools appear on main screen 🦋 AS
+ - Timer for tools 🦋 AS 
 
 _Week 3 (May 7 - 13)_  → Map/Land
- - Create map using tileset assets AS ✅
- - Use "Tiled" to create map AS ✅
-     - Need to learn how to create different tile and object layers AS ✅
-     - Learn how to connect "Tiled" map to code AS ✅
- - Creating moving map  ✅ AS
+ - Create map using tileset assets 🦋 AS
+ - Use "Tiled" to create map 🦋 AS
+     - Need to learn how to create different tile and object layers 🦋 AS
+     - Learn how to connect "Tiled" map to code 🦋 AS
+ - Creating moving map  🦋 AS
       - essentially map is not restricted to the screen dimensions 
- - Collisions with trees and flowers ✅AS
- - Creating buildings ( right now just code the buildings in - proper code for building will be done in week 4 and 6) AS ✅
+ - Collisions with trees and flowers 🦋 AS
+ - Creating buildings ( right now just code the buildings in - proper code for building will be done in week 4 and 6) 🦋 AS
  - Create map boundaries 
-      - After certain point character can not keep moving up/down in the map AS ✅
+      - After certain point character can not keep moving up/down in the map 🦋 AS
 
 _Week 4 (May 14 -20)_ → Barriers/Collisions 
  - Collision with buildings
-      - Character able to enter house and go inside  ✅AS
+      - Character able to enter house and go inside  🦋 AS
       - When character comes in contact with Farmers market, have some secondary page pop up ( right now focus on page actually showing up - further details will be coded  week 5) ❗❗ AM (PLAN)
       - Code button - so when pressed it leads to the pop up secondary page  ❗❗
  - Collision with trees
-      - When the character collides with trees, have it so  they cannot just walk through it. ✅AS
+      - When the character collides with trees, have it so  they cannot just walk through it. 🦋 AS
 
 ***shouldn’t take all week - pretty simple tasks -  this is kind of a catch up week in case we took longer on previous weeks ***
 
 _Week 5 (May 21 - 27)_ → Crops + Inventory 
  - Code crops collision so we can:
-      - Code:
-            -  planting crops ❗❗ AS
-            -  crops appearing  ✅AS 
-                 - i coded that apples appear rn ✅AS 
-            -  crops being harvested ❗❗ AS
-            -  harvesting animation ✅AS 
-      - Code in feature that we can use tools to mine crops  ❗❗ AS
-      - They need certain amount of hits or something ❗❗ AS
+ - planting crops ❗❗ AS
+ - crops appearing  🦋 AS
+       - i coded that apples appear rn 🦋 AS
+ - crops being harvested ❗❗ AS
+       -  harvesting animation 🦋 AS
+ - Code in feature that we can use tools to mine crops 🦋 AS
+      - They need certain amount of hits or something 🦋 AS
     
  - Code inventory:
       - Will need a button on screen that allows us to access our inventory and tells us how much of each item we have ❗❗
