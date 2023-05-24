@@ -20,7 +20,7 @@ _Week 2 (Apr 30 - May 6)_ → Character
      - Ability to use tools when key pressed 
      - For basic tools like shovels we can just code when the letter “w’ is pressed it appears and starts working. For other other tools, players will need to specifically        access inventory ( coming in week 5) ✅ AS
      - Make tools appear on main screen ✅ AS
- - Timer for tools ✅AM
+ - Timer for tools ✅AS / AM 
 
 _Week 3 (May 7 - 13)_  → Map/Land
  - Create map using tileset assets AS ✅
