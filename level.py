@@ -30,7 +30,7 @@ class Level:
             Flowers((obj.x,obj.y),obj.image,[self.all_sprites,self.collision_sprites])
         #trees
         for obj in tmx_data.get_layer_by_name('Tree obj'):
-            Shitty_Trees((obj.x,obj.y),obj.image,[self.all_sprites,self.collision_sprites])
+            Shitty_Trees((obj.x,obj.y),obj.image,[self.all_sprites,self.collision_sprites,self.tree_sprites],self.adding_to_inventory)
         #hills
         for x,y,surf in tmx_data.get_layer_by_name('hills').tiles():
             Generic((x*tile_size,y*tile_size),surf,self.all_sprites,LAYERS['Hills'])
@@ -53,11 +53,16 @@ class Level:
             collision_sprites = self.collision_sprites,
             trees = self.tree_sprites)  # creating instances of character class
         
+    def adding_to_inventory(self,thing):
+        self.character.crop_stuff[thing] += 1 # crop_stuff is inventory dictionary i made in character.py --> here we are increasing the number of that good
+
     def run(self,delta_time):
+        #self.surface_dimensions.fill('pink') # so we do not see preivious frame
         #self.all_sprites.draw(self.surface_dimensions) # we want our spirites to be drawn on self.surface_dimensions
-        self.all_sprites.custom_draw(self.character) # draws character on screen
+        self.all_sprites.custom_draw(self.character)
         self.all_sprites.update(delta_time)#updates sprite actions # is important since it calls update method on all our sprites
         self.overlay.display()
+        print(self.character.crop_stuff)
 
 class CameraGroup(pg.sprite.Group):
     def __init__(self):
