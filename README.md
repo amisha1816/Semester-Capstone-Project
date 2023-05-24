@@ -25,7 +25,7 @@ _Week 2 (Apr 30 - May 6)_ → Character
  - Ability to move  🦋 AS
  - Sprite animation 🦋 AS
  - Main character
-     - Ability to use tools when key pressed 
+     - Ability to use tools when key pressed 🦋 AS
      - For basic tools like shovels we can just code when the letter “w’ is pressed it appears and starts working. For other other tools, players will need to specifically        access inventory ( coming in week 5) 🦋 AS
      - Make tools appear on main screen 🦋 AS
  - Timer for tools 🦋 AS 
