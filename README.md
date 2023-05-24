@@ -1,19 +1,23 @@
 # Farming Game
 
-__Purpose__: Create a game where the player can live on a small island.
+__Purpose__: 
+Create a game where the player can live on a small island.
 
-__Goal__: By the middle of June, we'll have our game completed and have coded a variety of island tasks such as farming, selling their pockets and buying new items. 
+__Goal__: 
+By the middle of June, we'll have our game completed and have coded a variety of island tasks such as farming, selling their pockets and buying new items. 
 
-__Technology Used__: Pygame, Tiled Editor
+__Technology Used__: 
+Pygame, Tiled Editor
 
-__Coding Language__: Python
+__Coding Language__: 
+Python
 
 __Schedule__:
 *just used to assign tasks for us and to manage who is doing/completing what*
 
-Legend:
-Aroush →  🦋 AS
-Amisha →  🌷 AM
+ **Aroush** →  🦋 AS 
+ 
+ **Amisha** →  🌷 AM
 
 _Week 1 (Apr 23 - 29)_ → Watch tutorials on how to use pygame 🦋 AS / 🌷 AM
 
