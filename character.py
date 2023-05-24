@@ -177,8 +177,9 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         # We can just write write self.position together without breaking it into its components BUT when we factor in jumping, we need to only access the y coor
     
     def update(self,delta_time): # will update our sprite --> this connects to update method on level
+        self.update_timer()
+        self.get_target_location()
         self.updating_animation() 
         self.keyboard_input() # move method controls character movement therefore we call it in update method so characters movement shown
         self.movement(delta_time)
-        self.update_timer()
 ```
