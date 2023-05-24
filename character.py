@@ -1,4 +1,5 @@
 #character
+``` python 
 import pygame as pg
 import os
 from timer import Timer
@@ -6,7 +7,7 @@ from setting import *
 
 class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for visible game objects
     # Sprite --> container class to hold and manage multiple Sprite objects
-   def __init__(self,location,group,collision_sprites,trees):
+    def __init__(self,location,group,collision_sprites,trees):
         super().__init__(group) # we pass group so when we create instance of this class, object will be inside our group
         # groups -->  allows you to hold and manage multiple Sprite objects
         self.image = pg.Surface((32,64)) # pg.Surface -> for representing images to create a new image object.
@@ -49,6 +50,7 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
                 image = pg.transform.scale(image, (int(image.get_width() * 0.25), int(image.get_height()*0.25))) #scaling images down so they not massive
                 temp_array.append(image)
             self.animation_array.append(temp_array)
+        #print(self.animation_array)
 
     def updating_animation(self):
         animation_cooldown=40 # time for img lasts before going to next img ( idle.1 (wait 50 ms) idle.2 (wait 50ms) idle.3....)
@@ -58,9 +60,10 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
             self.index+=1
         if self.index == len(self.animation_array[self.action]):# if the index is greater than/equal to total num of img..then reset back to begining 
             self.index=0
-        if self.timers['tool use'].active: # checking if watercanning is being used rn is yah then....
-            self.index = 0 
-            self.update_action(1)
+        #if self.timers['tool use'].active: # checking if watercanning is being used rn is yah then....
+         #   print('in use')
+          #  self.index = 0 
+            #self.update_action(1)
             
     def update_timer(self):
         for timer in self.timers.values():
@@ -73,50 +76,62 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
             self.current_time=pg.time.get_ticks() # resetting time
 
     def using_tool(self):
+        if self.selected_tool == 'watercan':
+            pass
+        if self.selected_tool == 'axe':
+            #for tree in self.tree_sprites.sprites(): # if there are still trees in this group
+             #   if tree.
+             pass
+    
+    def get_target_location(self):
+        #self.target_pos = 
         pass
+    
     def using_seed(self):
         pass
 
     def keyboard_input(self):
         keys= pg.key.get_pressed() # is a list that returns all the possible keys that can be pressed 
         # for character moving up - down
-        if keys[pg.K_UP]: 
-            self.direction.y = -1 # start moving up by 1 
-            self.update_action(0)
-        elif keys[pg.K_DOWN]: 
-            self.direction.y = 1# # start moving down by 1 
-            self.update_action(0)
-        else:
-            self.direction.y=0 # if character not moving up/down it is just staying still
-        #for character moving left-right
-        if keys[pg.K_RIGHT]: 
-            self.direction.x = 1  # start moving right by 1 
-            self.update_action(0) # start running 
-            self.flip=False 
-        elif keys[pg.K_LEFT]: 
-            self.direction.x = -1 # start moving left by 1 
-            self.update_action(0) # start running 
-            self.flip=True 
-        else:
-            self.direction.x =0 # if character not moving left/right it is just staying still
-        if self.direction.x == 0 and self.direction.y == 0:
-            self.update_action(2) # stop movind and idle 
-        # for watercan movement
-        if keys[pg.K_SPACE]:
-            self.timers['tool use'].start()
+        if keys[pg.K_a]:
             self.update_action(1)
-        if keys[pg.K_q] and not self.timers['tool switch'].active:
+            self.timers['tool use'].start()
+        else:
+            if keys[pg.K_UP]: 
+                self.direction.y = -1 # start moving up by 1 
+                self.update_action(0)
+            elif keys[pg.K_DOWN]: 
+                self.direction.y = 1# # start moving down by 1 
+                self.update_action(0)
+            else:
+                self.direction.y=0 # if character not moving up/down it is just staying still
+            #for character moving left-right
+            if keys[pg.K_RIGHT]: 
+                self.direction.x = 1  # start moving right by 1 
+                self.update_action(0) # start running 
+                self.flip=False 
+            elif keys[pg.K_LEFT]: 
+                self.direction.x = -1 # start moving left by 1 
+                self.update_action(0) # start running 
+                self.flip=True 
+            else:
+                self.direction.x =0 # if character not moving left/right it is just staying still
+            if self.direction.x == 0 and self.direction.y == 0:
+                self.update_action(2) # stop movind and idle 
+            # for watercan movement
+    
+        if keys[pg.K_q] and not self.timers['tool switch'].active: # just used to switch between tools
             self.timers['tool switch'].start()
             self.tool_index += 1
             # if tool index > len of tools --> tool index =0
             self.tool_index = self.tool_index if self.tool_index < len(self.tool) else 0
             self.selected_tool = self.tool[self.tool_index]
+            print(self.selected_tool)
         # for seeds
         if keys[pg.K_LCTRL]:
             self.timers['seed use'].start()
-            print('seeeeed')
-            #self.update_action(3) --> after we add animation with seeds
-        if keys[pg.K_e] and not self.timers['seed switch'].active:
+            #self.update_action(1) # --> after we add animation with seeds
+        if keys[pg.K_e] and not self.timers['seed switch'].active: # just used to switch between seeds 
             self.timers['seed switch'].start()
             self.seed_index += 1
             # if tool index > len of tools --> tool index =0
@@ -129,11 +144,18 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         for sprite in self.collision_sprites.sprites():
             if hasattr(sprite,'hitbox'): # hasattr means "has attribute"
                 if sprite.hitbox.colliderect(self.hitbox): #colliderect detects collisions between rectangles 
+                    if direction == 'horizontal':
+                        if self.direction.x >0: # moving right
+                            self.hitbox.right=sprite.hitbox.left
+                        if self.direction.x < 0: # moving left
+                            self.hitbox.left = sprite.hitbox.right
+                        self.rect.centerx = self.hitbox.centerx # saying whereever character appears, we want hitbox to appear
+                        self.position.x = self.hitbox.centerx
                     if direction == 'vertical':
-                        if self.direction.y <0: # moving up
+                        if self.direction.y < 0: # moving up
                             self.hitbox.top= sprite.hitbox.bottom
-                        if self.direction.y >0: # moving down
-                            self.hitbox.bottom=self.hitbox.top
+                        if self.direction.y > 0: # moving down
+                            self.hitbox.bottom=sprite.hitbox.top
                         self.rect.centery = self.hitbox.centery # saying whereever character appears, we want hitbox to appear
                         self.position.y = self.hitbox.centery
                         
@@ -144,15 +166,17 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         self.rect.centerx = self.hitbox.centerx
         self.collide('horizontal')
         # delta_time is important since it adds the delayed effect when character moves therefore makes it look more realistic
-        
         # moving up/down
         self.position.y += self.direction.y*self.speed*delta_time # character location based on the direction character moving, the speed and the delta_time# delta_time helps with the movement of the object
         self.hitbox.centery=round(self.position.y)
         self.rect.centery = self.hitbox.centery
         self.collide('vertical')
+      
+        # We can just write write self.position together without breaking it into its components BUT when we factor in jumping, we need to only access the y coor
     
     def update(self,delta_time): # will update our sprite --> this connects to update method on level
         self.updating_animation() 
         self.keyboard_input() # move method controls character movement therefore we call it in update method so characters movement shown
         self.movement(delta_time)
         self.update_timer()
+```
