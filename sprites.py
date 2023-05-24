@@ -32,7 +32,7 @@ class Shitty_Trees(Generic):
         self.apple_sprites = pg.sprite.Group() # giving the apple images there on sprite group to make it easier to manage 
         self.more_fruit()
         
-    def tree_hit(self):
+     def tree_hits(self):
         self.health -= 1
         # for removing an apple
         if len(self.apple_sprites.sprites()) > 0: # checking how many apples left on tree, if there are no apples then yah
@@ -51,6 +51,17 @@ class Shitty_Trees(Generic):
                 #, we see it is in [self.all_sprites,self.collision_sprites], and by calling [0], we are telling this to also be added to self.all_spirtes 
                 #this is important so the apples are visable
                 z = LAYERS['fruit'])
+                
+      def is_tree_alive(self):
+        if self.health <= 0: # essentially when the tree "dies" and we get the required amount of hits..
+            self.image = self.tree_stump # we are calling the tree stump pic
+            self.rect = self.image.get_rect(midbottom = self.rect.midbottom) # and since we are changing the image, we need to redefine/remake the image rect
+            self.hitbox = self.rect.copy().inflate(-10,-self.rect.height*0.6)
+            self.alive = False 
+            
+    def update(self,delta_time):
+        if self.alive:
+            self.is_tree_alive()
 
 class Idiotic_Farmers_Market(Generic):
      def __ini__(self,pos,surf,groups):
