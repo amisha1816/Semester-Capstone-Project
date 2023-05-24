@@ -10,9 +10,9 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
     def __init__(self,location,group,collision_sprites,trees):
         super().__init__(group) # we pass group so when we create instance of this class, object will be inside our group
         # groups -->  allows you to hold and manage multiple Sprite objects
-        self.image = pg.Surface((32,64)) # pg.Surface -> for representing images to create a new image object.
+        self.image = pg.Surface((100,100)) # pg.Surface -> for representing images to create a new image object.
         self.rect=self.image.get_rect(center = location) # self.image.get_rect -> returns rect covering the entire surface
-        self.hitbox=self.rect.copy() #.inflate((-52,-57)) # we are making a collision dector by first copying the characters rect and the "inflating" said rectangle by sizing it down
+        self.hitbox=self.rect.copy() #.inflate((-50,-50)) # we are making a collision dector by first copying the characters rect and the "inflating" said rectangle by sizing it down
         self.collision_sprites = collision_sprites
         self.z = LAYERS['main'] # this means every sprite will have a z postion
         self.direction = pg.math.Vector2() # will be important when character turns and switches directions --> we will need to flip the sprite
