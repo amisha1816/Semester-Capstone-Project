@@ -106,7 +106,89 @@ class Button(): # Class that allows the player can press buttons
             # this is where we would put the code to change the screen to the farmer's market
         else:
             return False
- 
+ # Version 4
+import pygame as pg
+from setting import * 
+#screen = pg.display.set_mode((w,h))
+
+class Button(): # Class that allows the player can press buttons
+    def __init__(self, x_pos, y_pos, text_input): # initializing the class
+        self.text_input = text_input
+        self.font = pg.font.SysFont("ariel",18)
+        self.text = self.font.render(self.text_input,True,'white')
+        self.image = pg.image.load("fish.png")
+        self.rect = self.image.get_rect(center=(self.x_pos,self.y_pos))
+        self.x_pos = x_pos
+        self.y_pos = y_pos
+        self.display_surface = pg.display.get_surface()
+        self.draw() # automatically calls the draw method once the Button is initialized
+
+    def draw(self):
+        # Creating our button's display
+        screen.blit(self.image, self.rect)
+        screen.blit(self.text, self.text_rect)
+         
+    def check_press(self): # checks if the button has been clickes
+        mouse_position = pg.mouse.get_pos() # returns the current position of mouse
+        left_click = pg.mouse.get_pressed()[0]
+        b_rect = pg.rect.Rect((self.x_pos, self.y_pos), (100, 20))
+        if left_click and b_rect.collidepoint(mouse_position):
+            return True
+            # this is where we would put the code to change the screen to the farmer's market
+        else:
+            return False
+   # Online button 
+import pygame
+import sys
+
+pygame.init()
+screen = pygame.display.set_mode((800, 600))
+pygame.display.set_caption("Button!")
+main_font = pygame.font.SysFont("cambria", 30)
+
+class Button():
+	def __init__(self, image, x_pos, y_pos, text_input):
+		self.image = image
+		self.x_pos = x_pos
+		self.y_pos = y_pos
+		self.rect = self.image.get_rect(center=(self.x_pos, self.y_pos))
+		self.text_input = text_input
+		self.text = main_font.render(self.text_input, True, "white")
+		self.text_rect = self.text.get_rect(center=(self.x_pos, self.y_pos))
+
+	def update(self):
+		screen.blit(self.image, self.rect)
+		screen.blit(self.text, self.text_rect)
+
+	def checkForInput(self, position):
+		if position[0] in range(self.rect.left, self.rect.right) and position[1] in range(self.rect.top, self.rect.bottom):
+			print("Button Press!")
+
+	def changeColor(self, position):
+		if position[0] in range(self.rect.left, self.rect.right) and position[1] in range(self.rect.top, self.rect.bottom):
+			self.text = main_font.render(self.text_input, True, "green")
+		else:
+			self.text = main_font.render(self.text_input, True, "white")
+
+button_surface = pygame.image.load("fish.png")
+button_surface = pygame.transform.scale(button_surface, (200, 150))
+
+button = Button(button_surface, 400, 300, "Start")
+
+while True:
+	for event in pygame.event.get():
+		if event.type == pygame.QUIT:
+			pygame.quit()
+			sys.exit()
+		if event.type == pygame.MOUSEBUTTONDOWN:
+			button.checkForInput(pygame.mouse.get_pos())
+
+	screen.fill("purple")
+
+	button.update()
+	button.changeColor(pygame.mouse.get_pos())
+
+	pygame.display.update()
  
  
 ```
