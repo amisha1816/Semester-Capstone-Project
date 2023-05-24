@@ -64,12 +64,12 @@ _Week 5 (May 21 - 27)_ → Crops + Inventory
       - They need certain amount of hits or something 🦋 AS
  - Coded inventory logic 🦋 AS
       - keeps track of how many goods we have 🦋 AS
-      - keeps track of when player "picks" apple or "cuts" down a tree, it gets included into inventory
+      - keeps track of when player "picks" apple or "cuts" down a tree, it gets included into inventory 🦋 AS
            - and after it disappears off the screen 🦋 AS
     
  - Code inventory:
-      - Will need a button on screen that allows us to access our inventory ( aroush coded inventory logic, just implement it here) ❗❗
-      - Will need feature where we can select seeds that we can use to plant❗❗
+      - Will need a button on screen that allows us to access our inventory ( aroush coded inventory logic, just implement it here) AM ❗❗
+      - Will need feature where we can select seeds that we can use to plant AM❗❗
       - Will need to be able to pick other tools and use 🦋 AS
 
 _Week 6 (May 28 - Jun 3)_ →  Inventory + Farmers Market
