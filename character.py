@@ -103,8 +103,9 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         keys= pg.key.get_pressed() # is a list that returns all the possible keys that can be pressed 
         # for character moving up - down
         if keys[pg.K_a]:
-            self.update_action(1)
-            self.timers['tool use'].start()
+            if self.selected_tool == 'axe':
+                self.update_action(1)
+                self.timers['tool use'].start()
         else:
             if keys[pg.K_UP]: 
                 self.direction.y = -1 # start moving up by 1 
