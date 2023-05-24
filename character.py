@@ -39,6 +39,13 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         self.selected_seed = self.seeds[self.seed_index]
 
         self.tree_sprites = trees
+        
+        self.crop_stuff = {
+            'tree wood': 0,
+            'apple': 0,
+            'corn': 0,
+            'tomato': 0
+        }
 
         animation_types=['Run','Harvesting','Idle']
         for animation in animation_types:
