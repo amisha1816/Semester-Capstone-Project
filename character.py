@@ -75,17 +75,19 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
             self.index = 0 # resetting index 
             self.current_time=pg.time.get_ticks() # resetting time
 
-    def using_tool(self):
-        if self.selected_tool == 'watercan':
-            pass
-        if self.selected_tool == 'axe':
-            #for tree in self.tree_sprites.sprites(): # if there are still trees in this group
-             #   if tree.
-             pass
-    
+     def using_tool(self):
+        keys= pg.key.get_pressed()
+        if self.selected_tool == 'axe' and keys[pg.K_a]:
+            for tree in self.tree_sprites.sprites(): # if there are still trees in this group
+                if tree.rect.collidepoint(self.target_location):
+                    tree.damage()
+                    print('hit')
+             
     def get_target_location(self):
-        #self.target_pos = 
-        pass
+        if self.direction.x == 1:
+            self.target_location = self.rect.center + pg.math.Vector2(80,0)
+        elif self.direction.x == -1:
+             self.target_location = self.rect.center + pg.math.Vector2(-80,0)
     
     def using_seed(self):
         pass
