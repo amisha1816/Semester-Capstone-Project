@@ -1,3 +1,6 @@
+
+
+```python
 import pygame as pg
 from character import Character
 from overlay import Overlay
@@ -15,6 +18,9 @@ class Level:
         self.tree_sprites = pg.sprite.Group() # will be used to help player know where trees are 
         self.setup() # callings method so all tiled features appear
         self.overlay = Overlay(self.character)
+        
+        # 🌷 farmer's market 🌷
+        self.fm_active = False
         
     def setup(self):
         tmx_data = load_pygame(f'map data/mappy map.tmx') # helps us access tiled info
@@ -52,7 +58,12 @@ class Level:
             group = self.all_sprites,
             collision_sprites = self.collision_sprites,
             trees = self.tree_sprites)  # creating instances of character class
-        
+            farmer_market = self.farmer_market # 🌷
+    
+    # farmer's market method 🌷
+    def farmer_market(self):
+        self.fm_active = not self.fm_active # allows us to switch our farmer's market on and off with the farmer's market method
+    
     def adding_to_inventory(self,thing):
         self.character.crop_stuff[thing] += 1 # crop_stuff is inventory dictionary i made in character.py --> here we are increasing the number of that good
 
@@ -86,3 +97,4 @@ class CameraGroup(pg.sprite.Group):
                    #   hitbox_rect.center = offset_rect.center 
                     #  pg.draw.rect(self.display_surface,'green',hitbox_rect,5)
                       
+```
