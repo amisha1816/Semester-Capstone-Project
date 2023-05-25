@@ -1,5 +1,4 @@
 #character
-``` python 
 import pygame as pg
 import os
 from timer import Timer
@@ -7,7 +6,7 @@ from setting import *
 
 class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for visible game objects
     # Sprite --> container class to hold and manage multiple Sprite objects
-    def __init__(self,location,group,collision_sprites,trees):
+    def __init__(self,location,group,collision_sprites,trees,farmer_market): # 🌷 (Thurs. May 25) added in fm as an attribute
         super().__init__(group) # we pass group so when we create instance of this class, object will be inside our group
         # groups -->  allows you to hold and manage multiple Sprite objects
         self.image = pg.Surface((100,100)) # pg.Surface -> for representing images to create a new image object.
@@ -39,6 +38,9 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         self.selected_seed = self.seeds[self.seed_index]
 
         self.tree_sprites = trees
+        
+        # 🌷 (Thurs. May 25)
+        self.farmer_market = farmer_market
         
         self.crop_stuff = {
             'tree wood': 0,
