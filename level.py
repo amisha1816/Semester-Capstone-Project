@@ -19,6 +19,7 @@ class Level:
         self.overlay = Overlay(self.character)
         
         # 🌷 farmer's market 🌷
+        self.menu = Menu(self.player, self.farmer_market) # Creates our menu
         self.fm_active = False
         
     def setup(self):
@@ -70,9 +71,15 @@ class Level:
         #self.surface_dimensions.fill('pink') # so we do not see preivious frame
         #self.all_sprites.draw(self.surface_dimensions) # we want our spirites to be drawn on self.surface_dimensions
         self.all_sprites.custom_draw(self.character)
-        self.all_sprites.update(delta_time)#updates sprite actions # is important since it calls update method on all our sprites
         self.overlay.display()
-        print(self.character.crop_stuff)
+        
+        # 🌷 checks to see if the menu is active and if it is it stops the character from being able to move
+        if self.fm_active:
+            self.menu.update()
+        else:
+            self.all_sprites.update(delta_time)#updates sprite actions # is important since it calls update method on all our sprites
+            print(self.character.crop_stuff)
+        # 🌷 I changed around the order of these lines so I could add in this if statement
 
 class CameraGroup(pg.sprite.Group):
     def __init__(self):
