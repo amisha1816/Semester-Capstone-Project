@@ -1,4 +1,4 @@
-``` python
+
 import pygame as pg
 
 class Timer:
@@ -19,4 +19,4 @@ class Timer:
             self.stop()
             if self.func:
                 self.func()
-```
+
