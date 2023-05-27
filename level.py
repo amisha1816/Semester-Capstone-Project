@@ -87,6 +87,13 @@ class Level:
             print(self.character.crop_stuff)
         # 🌷 I changed around the order of these lines so I could add in this if statement
 
+     def new_freaking_day(self):
+        # for "regrowing" apples each night
+        for tree in self.tree_sprites.sprites():
+            for apple in tree.apple_sprites.sprites():
+                apple.kill() # at the end of the "day", we just want to get rid of the exising apples on the screen so its easier when we "regrow" them in the night
+            tree.more_fruit() # we recreating apples
+            
 class CameraGroup(pg.sprite.Group):
     def __init__(self):
         super().__init__()
