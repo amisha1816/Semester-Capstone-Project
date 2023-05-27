@@ -139,6 +139,14 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
             self.tool_index = self.tool_index if self.tool_index < len(self.tool) else 0
             self.selected_tool = self.tool[self.tool_index]
             print(self.selected_tool)
+        # for restarting day
+        if keys[pg.K_TAB]:
+            collided_interaction_sprites = pg.sprite.spritecollide(self,self.interaction,False) # if the player ( self) collides with the bed ( self.interaction), do we want it destoyed? NO ( false)
+            if collided_interaction_sprites:
+                if collided_interaction_sprites[0].name == 'cozy bed':
+                    self.update_action(2) # ensuring character is idle 
+                    print('clicked bish')
+                    self.reset = True
         # for seeds
         if keys[pg.K_LCTRL]:
             self.timers['seed use'].start()
