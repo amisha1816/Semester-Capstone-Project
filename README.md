@@ -54,8 +54,6 @@ _Week 4 (May 14 -20)_ → Barriers/Collisions
 
 _Week 5 (May 21 - 27)_ → Crops + Inventory 
  - Code crops collision so we can:
- - planting crops ❗❗ AS
- - crops growing back ❗❗ AS
  - crops appearing  🦋 AS
        - i coded that apples appear rn 🦋 AS
  - crops being harvested 🦋 AS
@@ -65,7 +63,7 @@ _Week 5 (May 21 - 27)_ → Crops + Inventory
  - Coded inventory logic 🦋 AS
       - keeps track of how many goods we have 🦋 AS
       - keeps track of when player "picks" apple or "cuts" down a tree, it gets included into inventory 🦋 AS
-           - and after it disappears off the screen 🦋 AS
+      -  and after it disappears off the screen 🦋 AS
     
  - Code inventory:
       - Will need a button on screen that allows us to access our inventory ( aroush coded inventory logic, just implement it here) AM ❗❗
@@ -74,6 +72,9 @@ _Week 5 (May 21 - 27)_ → Crops + Inventory
 
 _Week 6 (May 28 - Jun 3)_ →  Inventory + Farmers Market
  - Continue coding inventory section ❗❗
+ - code crops growing back AS
+      - will need to restart the day AS
+ - code planting crops
 - Farmers market:❗❗ AM (PLAN)
       - Code feature where character can go and sell off their farming goods ❗❗
       - This is so they can make money
