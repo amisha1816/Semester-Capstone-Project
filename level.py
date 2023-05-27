@@ -53,13 +53,15 @@ class Level:
         for x,y,surf in tmx_data.get_layer_by_name('water').tiles():
             Generic((x*tile_size,y*tile_size),surf,self.all_sprites,LAYERS['Water'])
         # characterrrrr
-        self.character = Character(
-            location = (1550,1400),
-            group = self.all_sprites,
-            collision_sprites = self.collision_sprites,
-            trees = self.tree_sprites)  # creating instances of character class
-            farmer_market = self.farmer_market # 🌷
-    
+        for obj in tmx_data.get_layer_by_name("Player"): # this allows me to use tile to pinpoint characer location
+            if obj.name == "Starting Point": # i created a node on the tiled map which basically places our character there
+                self.character = Character( # it is creating an instance of our character here
+                    location = (obj.x,obj.y), # obj.x and obj.y just means the location of the object on the tiled map 
+                    group = self.all_sprites,
+                    collision_sprites = self.collision_sprites,
+                    trees = self.tree_sprites,
+                    interaction = self.interaction_sprites) # creating instances of character class
+                    farmer_market = self.farmer_market # 🌷    
     # farmer's market method 🌷
     def farmer_market(self):
         self.fm_active = not self.fm_active # allows us to switch our farmer's market on and off with the farmer's market method
