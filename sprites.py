@@ -69,3 +69,10 @@ class Idiotic_Farmers_Market(Generic):
      def __ini__(self,pos,surf,groups):
         super().__init__(pos,surf,groups)
         self.hitbox=self.rect.copy().inflate((self.rect.width*1.5,self.rect.height*1.5))
+
+ 
+class Another_Shit_Show_Day_Mat(Generic):
+    def __init__(self, pos, size, groups,name):
+        surf = pg.Surface(size)
+        super().__init__(pos,surf,groups)
+        self.name = name
