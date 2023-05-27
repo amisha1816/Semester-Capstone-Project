@@ -62,6 +62,9 @@ class Level:
                     trees = self.tree_sprites,
                     interaction = self.interaction_sprites) # creating instances of character class
                     farmer_market = self.farmer_market # 🌷    
+             if obj.name == 'cozy bed':
+                print('bed here')
+                Another_Shit_Show_Day_Mat((obj.x,obj.y),(obj.width,obj.height),(self.interaction_sprites),'cozy bed')
     # farmer's market method 🌷
     def farmer_market(self):
         self.fm_active = not self.fm_active # allows us to switch our farmer's market on and off with the farmer's market method
