@@ -87,7 +87,8 @@ class Level:
             self.farmer_market.update()
         else:
             self.all_sprites.update(delta_time)#updates sprite actions # is important since it calls update method on all our sprites
-            print(self.character.crop_stuff)
+        
+	print(self.character.crop_stuff)
         # 🌷 I changed around the order of these lines so I could add in this if statement
 
      def new_freaking_day(self):
