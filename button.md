@@ -210,7 +210,7 @@ clock = pg.time.Clock()
 screen = pg.display.set_mode((w, h))
 font = pg.font.SysFont('Cambria', 14)
 
-# boolutton class
+# button class
 class Button(): # Class that allows the player can press buttons
     def __init__(self, x, y, text): # initializing the class
         self.x = x
@@ -224,9 +224,8 @@ class Button(): # Class that allows the player can press buttons
         self.button_rect = pg.Rect(self.x,self.y, 10, 20)
         self.button_text = font.render(text, True, 'black')
 
-    
-    # checks for clicks and blits text and button to the screen
     def update(self):
         screen.blit(self.image, self.button_rect)
         screen.blit(self.button_text, (self.x + 40, self.y + 30))
+	
 ```
