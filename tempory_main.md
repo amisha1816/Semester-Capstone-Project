@@ -65,7 +65,8 @@ while run:
             pg.quit() 
             sys.exit()
 
-    fm_button.update() 
+    fm_button.update()
+    fm_button.check_press() # 🌷
 
     pg.display.update() # allows a portion of the screen to be blitted
     delta_time = clock.tick(120)/500
