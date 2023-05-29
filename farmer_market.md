@@ -11,10 +11,15 @@ class Menu:
     # base set-up :)
     self.character = character
     self.fm_menu = fm_menu
-    self.display_surface = pg.display.get_surface()
-    self.font = pg.font.SysFont('Cambria', 24)
+    self.font = pg.font.SysFont('Cambria', 14)
     
-  def close(self): # allows the player to close the farmer's market, we don't need to code a back button 🎉
+    # Adding in our farmer's market image (this code was pulled from the button code!)
+    image = pg.image.load('❗ ADD IN FILE NAME ❗')
+    image = pg.transform.scale(image, (int(image.get_width() * 0.30), int(image.get_height()*0.35)))
+    # ❗ ADD IN CORRECT TRANSFORMATIONS
+    self.image = image
+    
+  def close(self): # allows the player to close the farmer's market
     keys = pg.keys.get_pressed() # getting all the keys
     
     if keys[pg. K_ESCAPE]: # if player hits escape, display closes
@@ -22,13 +27,13 @@ class Menu:
   
   def update(self): # diplays the menu, it's like the button all over again :(
       self.input()
-      self.display_surface.blit(pg.Surface((1500, 1200)), (0,0)
-      # format is (Surface(dimensions), (coordinates)                            
+      screen.blit(self.image, (500, 500)) ❗ COORDINATES NEEDS TO BE ADJUSTED
+                   
 ```
 
 Current farmer market methods, classes and more (so I don't get confused)
-- ```farmer_market``` (within level)
-- ```self.fm_active``` (within level twice!) → allows us to switch btwn the  farmer's market being on and off 
+- ```farmer_market``` our main farmer market method within level
+- ```self.fm_active``` → allows us to switch btwn the  farmer's market being on and off (it's set to false within level's init method
 
 ---
 
@@ -42,8 +47,7 @@ Current farmer market methods, classes and more (so I don't get confused)
 
 ### What's left to do:
 
-- Connect clicking the button to the opening of the farmer's market. Can most likely use get_pressed and check_click methods from button to do this!
-![image](https://github.com/amisha1816/Semester-Capstone-Project/assets/129302600/161a32f6-2280-439b-8343-ec389cf597dc)
-*This is how the tutorial did it for reference*
-*We'll need to call the method farmer_market to make this work
 
+### Possible Errors
+- the layout of the tutorial maker's code files is quite different than ours so we might face some issues in code not being in the right space
+  - like within button, I call the farmer_market method within level if the button has been pressed, however the video did this within level in his game loop. I added in the line ```fm_button.check_press() # 🌷``` within the game loop on our main page so I think we should be ok
