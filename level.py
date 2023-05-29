@@ -21,15 +21,9 @@ class Level:
         
         # 🌷 farmer's market 🌷
         self.menu = Menu(self.player, self.farmer_market) # Creates our menu
-        
-        # this entire code block checks if the player has clicked the button!
-        pos = pg.mouse.get_pos() # returns the current position of mouse
-        left_click = pg.mouse.get_pressed()[0]
-        self.button_rect = pg.Rect(self.x,self.y, 10, 20)
-        if left_click and self.button_rect.collidepoint(pos): # checking to see if the player clicked within the button area
-		    self.fm_active = True
-            
-            
+        self.fm_active = False # says fm is not active when it's not on screen
+       
+    
     def setup(self):
         tmx_data = load_pygame(f'map data/mappy map.tmx') # helps us access tiled info
         #ground/grass
@@ -73,6 +67,8 @@ class Level:
              if obj.name == 'cozy bed':
                 print('bed here')
                 Another_Shit_Show_Day_Mat((obj.x,obj.y),(obj.width,obj.height),(self.interaction_sprites),'cozy bed')
+		
+		
     # farmer's market method 🌷
     def farmer_market(self):
         self.fm_active = not self.fm_active # allows us to switch our farmer's market on and off with the farmer's market method
