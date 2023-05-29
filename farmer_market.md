@@ -1,9 +1,10 @@
 
 ### Farmer's Market Code 🍉
 
-```python
+```pythonscreen = pg.display.set_mode((1300,800))
 import pygame as pg
 from settings import *
+screen = pg.display.set_mode((1300,800))
 
 class Menu:
   def __init__(self, character, fm_menu): # fm_menu allows us to switch on and off the farmer's market
@@ -26,7 +27,7 @@ class Menu:
         self.fm_menu() # I'm not too sure about this line, I think I might be calling the wrong method, CHECK WHEN DEBUGGING
   
   def update(self): # diplays the menu, it's like the button all over again :(
-      self.input()
+      self.close()
       screen.blit(self.image, (500, 500)) ❗ COORDINATES NEEDS TO BE ADJUSTED
                    
 ```
