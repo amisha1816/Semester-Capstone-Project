@@ -233,7 +233,7 @@ class Button(): # Class that allows the player can press buttons
         left_click = pg.mouse.get_pressed()[0]
         self.button_rect = pg.Rect(self.x,self.y, 10, 20)
         if left_click and self.button_rect.collidepoint(pos): # checking to see if the player clicked within the button area
-			self.farmer_market() # 🌷 I'm not sure if we need the self
+		self.farmer_market() # 🌷 I'm not sure if we need the self
             return True
 			
 			
