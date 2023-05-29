@@ -227,5 +227,17 @@ class Button(): # Class that allows the player can press buttons
     def update(self):
         screen.blit(self.image, self.button_rect)
         screen.blit(self.button_text, (self.x + 40, self.y + 30))
-	
+
+	def check_press(self): # checks if the button has been clickes
+        pos = pg.mouse.get_pos() # returns the current position of mouse
+        left_click = pg.mouse.get_pressed()[0]
+        self.button_rect = pg.Rect(self.x,self.y, 10, 20)
+        if left_click and self.button_rect.collidepoint(pos): # checking to see if the player clicked within the button area
+			self.farmer_market() # 🌷 I'm not sure if we need the self
+            return True
+			
+			
+        else:
+            return False
+			
 ```
