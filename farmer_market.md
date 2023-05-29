@@ -17,7 +17,6 @@ class Menu:
     # Adding in our farmer's market image (this code was pulled from the button code!)
     image = pg.image.load('❗ ADD IN FILE NAME ❗')
     image = pg.transform.scale(image, (int(image.get_width() * 0.30), int(image.get_height()*0.35)))
-    # ❗ ADD IN CORRECT TRANSFORMATIONS
     self.image = image
     
   def close(self): # allows the player to close the farmer's market
@@ -28,14 +27,8 @@ class Menu:
   
   def update(self): # diplays the menu, it's like the button all over again :(
       self.close()
-      screen.blit(self.image, (500, 500)) ❗ COORDINATES NEEDS TO BE ADJUSTED
-                   
+      screen.blit(self.image, (500, 500)) 
 ```
-
-Current farmer market methods, classes and more (so I don't get confused)
-- ```farmer_market``` our main farmer market method within level
-- ```self.fm_active``` → allows us to switch btwn the  farmer's market being on and off (it's set to false within level's init method
-
 ---
 
 ### Image Options
