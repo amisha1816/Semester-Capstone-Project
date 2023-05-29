@@ -21,8 +21,15 @@ class Level:
         
         # 🌷 farmer's market 🌷
         self.menu = Menu(self.player, self.farmer_market) # Creates our menu
-        self.fm_active = False
         
+        # this entire code block checks if the player has clicked the button!
+        pos = pg.mouse.get_pos() # returns the current position of mouse
+        left_click = pg.mouse.get_pressed()[0]
+        self.button_rect = pg.Rect(self.x,self.y, 10, 20)
+        if left_click and self.button_rect.collidepoint(pos): # checking to see if the player clicked within the button area
+		    self.fm_active = True
+            
+            
     def setup(self):
         tmx_data = load_pygame(f'map data/mappy map.tmx') # helps us access tiled info
         #ground/grass
@@ -81,7 +88,7 @@ class Level:
         
         # 🌷 checks to see if the menu is active and if it is it stops the character from being able to move
         if self.fm_active:
-            self.menu.update()
+            self.farmer_market.update()
         else:
             self.all_sprites.update(delta_time)#updates sprite actions # is important since it calls update method on all our sprites
             print(self.character.crop_stuff)
