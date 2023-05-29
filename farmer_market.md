@@ -49,5 +49,8 @@ Current farmer market methods, classes and more (so I don't get confused)
 
 
 ### Possible Errors
-- the layout of the tutorial maker's code files is quite different than ours so we might face some issues in code not being in the right space
+- the layout is my main worry. I'm not sure if my placement of certain code blocks is wrong
   - like within button, I call the farmer_market method within level if the button has been pressed, however the video did this within level in his game loop. I added in the line ```fm_button.check_press() # 🌷``` within the game loop on our main page so I think we should be ok
+
+![image](https://github.com/amisha1816/Semester-Capstone-Project/assets/129302600/3795f9a2-cbcd-41cf-b172-a23ba3e806d0)
+
