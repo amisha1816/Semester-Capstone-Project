@@ -16,6 +16,15 @@ class Menu:
     image = pg.transform.scale(image, (int(image.get_width() * 0.30), int(image.get_height()*0.35)))
     self.image = image
     
+    # 🎂 farmer's market buying/selling 
+    self.width = 300 # width of the entire buying section (left to right)
+    self.space = 10 # space between the different blocks
+    self.padding = 8
+    
+    self.options = list(self.character.item_inventory.keys())
+    # this pulls from the inventory dictionary within character and collects all our different items into one complete list
+    # rn we're only pulling the keys because we're working on the block titles not the actual inventory count
+    
   def close(self): # allows the player to close the farmer's market
     keys= pg.key.get_pressed() # getting all the keys
     
