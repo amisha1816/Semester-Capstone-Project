@@ -2,7 +2,7 @@
 Within Character
 ```python
 if keys[pg.K_RETURN]: # if enter was pressed
-  self.farmer_market()  
+    self.farmer_market()  
 ```
 ---
 
