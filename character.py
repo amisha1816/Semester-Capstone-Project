@@ -161,6 +161,10 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
             self.selected_seed = self.seeds[self.seed_index]
             print(self.selected_seed)
         self.image=pg.transform.flip(self.image,self.flip,False) # based on direction of character, the image may need to be flipped
+        
+        if keys[pg.K_RETURN]: # if enter was pressed
+            self.farmer_market()  
+
 
     def collide(self,direction):
         for sprite in self.collision_sprites.sprites():
