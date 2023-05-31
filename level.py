@@ -88,15 +88,15 @@ class Level:
         #self.all_sprites.draw(self.surface_dimensions) # we want our spirites to be drawn on self.surface_dimensions
         self.all_sprites.custom_draw(self.character)
         self.overlay.display()
-        
-        # 🌷 checks to see if the menu is active and if it is it stops the character from being able to move
+       
         if self.fm_active:
             self.farmer_market.update()
         else:
             self.all_sprites.update(delta_time)#updates sprite actions # is important since it calls update method on all our sprites
         
 	print(self.character.crop_stuff)
-        # 🌷 I changed around the order of these lines so I could add in this if statement
+        if self.character.new_day:
+            self.transition.play()
 
      def new_freaking_day(self):
         # for "regrowing" apples each night
