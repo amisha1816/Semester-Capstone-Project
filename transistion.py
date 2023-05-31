@@ -8,9 +8,15 @@ class Transistion:
         self.character = player
         # for overlay/background image
         self.image = pg.Surface((w,h))
-        self.bg_color = 255
-        self.speed = -15
+        self.bg_color = 222
+        self.transistion_speed = -15
     def play(self):
-        self.bg_color += self.speed
+        self.bg_color += self.transistion_speed # will help us have fading away affect --> darkness decreases as time passes
+        if self.bg_color <= 0:
+            self.transistion_speed *= -1 # once it reaches 0, reset it
+            self.bg_color = 0 
+            self.reset()
+        if self.bg_color > 222:
+            self.bg_color = 222
         self.image.fill((self.bg_color,self.bg_color,self.bg_color))
         self.surface.blit(self.image,(0,0), special_flags=pg.BLEND_RGBA_MULT)
