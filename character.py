@@ -40,8 +40,7 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         self.tree_sprites = trees
         self.interaction = interaction
         self.new_day = False
-        
-        # 🌷 (Thurs. May 25)
+
         self.farmer_market = farmer_market
         
         self.crop_stuff = {
@@ -50,6 +49,11 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
             'corn': 0,
             'tomato': 0
         }
+        
+        # 🎂 list of seeds that we can buy from the farmer's market
+        self.seed_stuff = {
+            'corn': 0
+            'tomato':
 
         animation_types=['Run','Harvesting','Idle']
         for animation in animation_types:
