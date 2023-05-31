@@ -22,7 +22,12 @@ class Level:
         # 🌷 farmer's market 🌷
         self.menu = Menu(self.player, self.farmer_market) # Creates our menu
         self.fm_active = False # says fm is not active when it's not on screen
-       
+    def new_freaking_day(self):
+        # for "regrowing" apples each night
+        for tree in self.tree_sprites.sprites():
+            for apple in tree.apple_sprites.sprites():
+                apple.kill() # at the end of the "day", we just want to get rid of the exising apples on the screen so its easier when we "regrow" them in the night
+            tree.more_fruit() # we recreating apples      
     
     def setup(self):
         tmx_data = load_pygame(f'map data/mappy map.tmx') # helps us access tiled info
