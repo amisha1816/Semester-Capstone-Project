@@ -1,4 +1,5 @@
 
+```python
 import pygame as pg
 from setting import *
 screen = pg.display.set_mode((w,h))
@@ -34,3 +35,9 @@ class Menu:
   def update(self): # diplays the menu, it's like the button all over again :(
       self.close()
       screen.blit(self.image, (0,0)) # 0,0, so it fills the whole screen
+```
+
+🎂 Notes
+- so within the farmer's market, do we want furniture items/decor?
+  - we discussed this when starting our project but I'm not sure how the actual application of this will work on our map
+  - it's pretty easy to add if we want tho all we have to do is near Aroush's original inventory in character we add a furniture dictionary and then add it to self.options in this file
