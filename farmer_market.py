@@ -28,9 +28,15 @@ class Menu:
         self.options = list(self.character.crop_stuff.keys() + self.character.seed_stuff.keys())
         # pulls both our inventory dictionaries from character
         self.buy_border = len(self.crop_stuff) - 1 # allows us to seperate our selling and buying items
-        self.text_in()
+        self.block_setup()
     
- 
+    # 🎂 (5/30)
+    def block_setup(self): # creates our block titles! 
+        self.block_titles = [] 
+        for item in self.options: # allows us  to add all our item titles to our rendered title list
+            title = self.font.render(item, False, 'Black')
+            # ^ format (string, antialias [rounded corners], colour)      
+            self.block_titles.append(title)                         
     
     def close(self): # allows the player to close the farmer's market
         keys= pg.key.get_pressed() # getting all the keys
@@ -41,9 +47,12 @@ class Menu:
       def update(self): # diplays the menu, it's like the button all over again :(
           self.close()
           screen.blit(self.image, (0,0)) # 0,0, so it fills the whole screen
-```
-
-🎂 Notes
-- so within the farmer's market, do we want furniture items/decor?
-  - we discussed this when starting our project but I'm not sure how the actual application of this will work on our map
-  - it's pretty easy to add if we want tho all we have to do is near Aroush's original inventory in character we add a furniture dictionary and then add it to self.options in this file
+          
+          # 🎂 (5/30)
+          for title_index, title in enumerate(self.block_titles):
+          # enumerate counts our iterations
+          # needed to differentiate btwn selling and buying items (w/ self.buy_border) 
+              screen.blit(title,(100, title_index * 50) 
+                
+        
+              
