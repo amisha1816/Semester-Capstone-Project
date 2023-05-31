@@ -18,6 +18,7 @@ class Level:
         self.interaction_sprites =pg.sprite.Group() # for the bed so day is reset --> this is to help the character understand 
         self.setup() # callings method so all tiled features appear
         self.overlay = Overlay(self.character)
+	self.transition = Transistion(self.new_freaking_day,self.character)
         
         # 🌷 farmer's market 🌷
         self.menu = Menu(self.player, self.farmer_market) # Creates our menu
