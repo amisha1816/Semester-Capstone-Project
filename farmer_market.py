@@ -21,7 +21,7 @@ class Menu:
         self.image = image
 
         # 🎂 farmer's market buying/selling 
-        self.width = 300 # width of the entire buying section (left to right)
+        self.width = 200 # width of the entire buying section (left to right)
         self.space = 10 # space between the different blocks
         self.padding = 8
 
@@ -32,12 +32,26 @@ class Menu:
     
     # 🎂 (5/30)
     def block_setup(self): # creates our block titles! 
+        
         self.block_titles = [] 
+        self.total_height = 0
+        
         for item in self.options: # allows us  to add all our item titles to our rendered title list
             title = self.font.render(item, False, 'Black')
             # ^ format (string, antialias [rounded corners], colour)      
-            self.block_titles.append(title)                         
-    
+            self.block_titles.append(title)            
+            self.total_height += self.block_titles.get_height() + self.padding * 2
+            # get_height() is a pg function to return the height of a surface
+        
+        self.total_height += (len(self.block_titles) - 1) * self.space
+        # creates spaces btwn our blocks according to our attribute self.space in our init method
+        self.menu_top = h / 2 - self.total_height / 2 
+        self.all_block.rect = pg.Rect(100, self.menu_top, self.width, self.total_height)
+        # ❗ the 100 is just a random placement #, we need to adjust to our coordinates ❗
+        
+        # h is pulled from settings
+        # we subtract self.total_height bc the screen display works differently, it's like flipped
+        
     def close(self): # allows the player to close the farmer's market
         keys= pg.key.get_pressed() # getting all the keys
         
@@ -47,12 +61,13 @@ class Menu:
       def update(self): # diplays the menu, it's like the button all over again :(
           self.close()
           screen.blit(self.image, (0,0)) # 0,0, so it fills the whole screen
-          
+          pg.draw.rect(screen, 'White', self)
+            
           # 🎂 (5/30)
           for title_index, title in enumerate(self.block_titles):
           # enumerate counts our iterations
           # needed to differentiate btwn selling and buying items (w/ self.buy_border) 
-              screen.blit(title,(100, title_index * 50) 
+              screen.blit(title,(100, title_index * 50) # ❗CHANGE COORDINATES ❗
                 
         
               
