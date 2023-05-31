@@ -18,5 +18,7 @@ class Transistion:
             self.reset()
         if self.bg_color > 222:
             self.bg_color = 222
+            self.character.new_day = False
+            self.transistion_speed = -15
         self.image.fill((self.bg_color,self.bg_color,self.bg_color))
         self.surface.blit(self.image,(0,0), special_flags=pg.BLEND_RGBA_MULT)
