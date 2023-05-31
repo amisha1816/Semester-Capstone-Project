@@ -39,7 +39,7 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
 
         self.tree_sprites = trees
         self.interaction = interaction
-        self.reset = False
+        self.new_day = False
         
         # 🌷 (Thurs. May 25)
         self.farmer_market = farmer_market
