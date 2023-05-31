@@ -6,6 +6,7 @@ from sprites import Generic, Flowers,Shitty_Trees,Idiotic_Walls
 from setting import *
 from pytmx.util_pygame import load_pygame
 from menu import Menu # 🌷
+from transistion import Transistion
 
 class Level:
     def __init__(self):
