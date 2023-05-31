@@ -148,7 +148,7 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
                 if collided_interaction_sprites[0].name == 'cozy bed':
                     self.update_action(2) # ensuring character is idle 
                     print('clicked bish')
-                    self.reset = True
+                    self.new_day = True
         # for seeds
         if keys[pg.K_LCTRL]:
             self.timers['seed use'].start()
