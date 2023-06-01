@@ -52,9 +52,12 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         
         # 🎂 list of seeds that we can buy from the farmer's market
         self.seed_stuff = {
-            'corn': 0
-            'tomato':
-
+            'corn_seed': 0
+            'tomato_seed': 0 
+        }
+        
+        self.money = 100 # money we automatically give Lucy!
+        
         animation_types=['Run','Harvesting','Idle']
         for animation in animation_types:
             temp_array=[] # we are first going to load the animation pics in here THEN append this to animation_array
