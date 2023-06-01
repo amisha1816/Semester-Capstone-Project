@@ -31,6 +31,19 @@ class Menu:
         self.block_setup()
     
     # 🎂 (5/30)
+    def money_money_money(self): # puts our money value on screen
+        money_amt = self.font.render(f'$(self.character.money)', True, 'Black')
+        money_block = money_amt.get_rect(bottom_left = (w / 5, h - 20))
+        # so I included w/5 so that our money block would be closer to the left side of the screen
+        # ❗ but again we still neet to adjust the coordinates 🤯🤯 ❗
+        
+        pg.draw.rect(screen, 'White', money_block.inflate(10,10), 0, 5)
+        # 0 is for the border width, border radius is 6 (rounding)
+        
+        sreen.blit(money_amt, money_block)
+        
+        
+    # 🎂 (5/30)
     def block_setup(self): # creates our block titles! 
         
         self.block_titles = [] 
@@ -40,7 +53,7 @@ class Menu:
             title = self.font.render(item, False, 'Black')
             # ^ format (string, antialias [rounded corners], colour)      
             self.block_titles.append(title)            
-            self.total_height += self.block_titles.get_height() + self.padding * 2
+            self.total_height += block_titles.get_height() + self.padding * 2
             # get_height() is a pg function to return the height of a surface
         
         self.total_height += (len(self.block_titles) - 1) * self.space
@@ -58,16 +71,23 @@ class Menu:
         if keys[pg.K_ESCAPE]: # if player hits escape, display closes
             self.fm_menu() # I'm not too sure about this line, I think I might be calling the wrong method, CHECK WHEN DEBUGGING
   
-      def update(self): # diplays the menu, it's like the button all over again :(
-          self.close()
-          screen.blit(self.image, (0,0)) # 0,0, so it fills the whole screen
-          pg.draw.rect(screen, 'White', self)
-            
-          # 🎂 (5/30)
-          for title_index, title in enumerate(self.block_titles):
-          # enumerate counts our iterations
-          # needed to differentiate btwn selling and buying items (w/ self.buy_border) 
-              screen.blit(title,(100, title_index * 50) # ❗CHANGE COORDINATES ❗
-                
+    def inventory_amount(self, text, amount, top):
         
+        
+    
+    def update(self): # diplays the menu, it's like the button all over again :(
+        self.close()
+        screen.blit(self.image, (0,0)) # 0,0, so it fills the whole screen
+        self.money_money_money()
+            
+        pg.draw.rect(screen, 'White', self.all_block.rect)
+        # ^ we haven't used pg.draw.rect so far, but I think it should work ok here
+            
+        # 🎂 (5/30)
+        for title_index, title in enumerate(self.block_titles):
+        # enumerate counts our iterations
+        # needed to differentiate btwn selling and buying items (w/ self.buy_border) 
+            screen.blit(title,(100, title_index * 50) # ❗CHANGE COORDINATES ❗
+                
+    
               
