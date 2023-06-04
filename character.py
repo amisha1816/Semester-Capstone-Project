@@ -6,7 +6,7 @@ from setting import *
 
 class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for visible game objects
     # Sprite --> container class to hold and manage multiple Sprite objects
-    def __init__(self,location,group,collision_sprites,trees,interation,farmer_market): # 🌷 (Thurs. May 25) added in fm as an attribute
+    def __init__(self,location,group,collision_sprites,trees,interation,farmer_market,dirt): # 🌷 (Thurs. May 25) added in fm as an attribute
         super().__init__(group) # we pass group so when we create instance of this class, object will be inside our group
         # groups -->  allows you to hold and manage multiple Sprite objects
         self.image = pg.Surface((100,100)) # pg.Surface -> for representing images to create a new image object.
