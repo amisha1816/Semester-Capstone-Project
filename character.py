@@ -59,7 +59,7 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         
         self.money = 100 # money we automatically give Lucy!
         
-        animation_types=['Run','Harvesting','Idle']
+        animation_types=['Run','Harvesting','Idle','Hoe']
         for animation in animation_types:
             temp_array=[] # we are first going to load the animation pics in here THEN append this to animation_array
             #we doing this rather than appending staraight to animation_array since after each animation type the array needs to be emptied for the next animation type to be loaded in 
@@ -122,6 +122,7 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
                 self.timers['tool use'].start()
         elif keys[pg.K_s]:
             if self.selected_tool == 'hoe':
+                self.update_action(3)
                 self.timers['tool use'].start()
         else:
             if keys[pg.K_UP]: 
