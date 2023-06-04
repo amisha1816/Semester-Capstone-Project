@@ -40,6 +40,7 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         self.tree_sprites = trees
         self.interaction = interaction
         self.new_day = False
+        self.dirt_layer = dirt
 
         self.farmer_market = farmer_market
         
