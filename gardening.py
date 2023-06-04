@@ -52,4 +52,4 @@ class Ground_Dirt:
             for index_cell,cell in enumerate(row):
                 if "X" in cell:
                     print('bloop bloop')
-                    Dirt_Bloop((index_cell * tile_size,index_row * tile_size),self.dirt_image,[self.all_sprites,self.dirt])
+                    Dirt_Bloop((index_cell * tile_size - 32,index_row * tile_size + 64),self.dirt_image,[self.all_sprites,self.dirt]) # the -32 and +64 helps adjust the location so the block appears right in front of the character
