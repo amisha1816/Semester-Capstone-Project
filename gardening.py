@@ -28,3 +28,12 @@ class Ground_Dirt:
 
         for x,y, _ in load_pygame(f'map data/mappy map.tmx').get_layer_by_name('farming land').tiles():
             self.grid[y][x].append("F") # all the blocks we can farm on will be assigned "F" --> after we will cycle through this list and can tell which ones we can use/not
+     def hit_rect(self):
+        self.hit_rect=[]
+        for index_row,row in enumerate(self.grid):
+            for index_cell,cell in enumerate(row):
+                if "F" in cell:
+                    x= index_cell * tile_size
+                    y= index_row * tile_size
+                    rect= pg.Rect(x,y,tile_size,tile_size)
+                    self.hit_rect.append(rect)
