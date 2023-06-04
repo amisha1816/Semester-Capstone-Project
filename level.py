@@ -17,6 +17,7 @@ class Level:
         # self.all_sprites will be the 'container' that stores our sprites
         self.tree_sprites = pg.sprite.Group() # will be used to help player know where trees are 
         self.interaction_sprites =pg.sprite.Group() # for the bed so day is reset --> this is to help the character understand 
+	self.dirt_layer = Ground_Dirt(self.all_sprites)
         self.setup() # callings method so all tiled features appear
         self.overlay = Overlay(self.character)
 	self.transition = Transistion(self.new_freaking_day,self.character)
