@@ -71,7 +71,7 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         #print(self.animation_array)
 
     def updating_animation(self):
-        animation_cooldown=40 # time for img lasts before going to next img ( idle.1 (wait 50 ms) idle.2 (wait 50ms) idle.3....)
+        animation_cooldown=20 # time for img lasts before going to next img ( idle.1 (wait 50 ms) idle.2 (wait 50ms) idle.3....)
         self.image=self.animation_array[self.action][self.index] # indexing our index --> eg self.animation_array has 3 lists in it so we using[self.action] to call a specfic list then [self.index] to call a spefic item of that list
         if pg.time.get_ticks() - self.current_time > animation_cooldown: # if the time now minus self.current_time is greater than 50.. time to move on to next image
             self.current_time = pg.time.get_ticks() # updating time
