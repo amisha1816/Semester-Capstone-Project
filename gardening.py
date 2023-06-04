@@ -20,3 +20,11 @@ class Ground_Dirt:
         # if the area is farmable
         # if the soil has been watered
         # is the soil has a plant on it
+    def dirt_grid(self):
+        ground = pg.image.load('Sprout Lands - Sprites - Basic pack/House/ground.png')
+        horizontal_tile_count= 125
+        vertical_tile_count = 95
+        self.grid= [ [[] for col in range(horizontal_tile_count)] for row in range(vertical_tile_count)]
+
+        for x,y, _ in load_pygame(f'map data/mappy map.tmx').get_layer_by_name('farming land').tiles():
+            self.grid[y][x].append("F") # all the blocks we can farm on will be assigned "F" --> after we will cycle through this list and can tell which ones we can use/not
