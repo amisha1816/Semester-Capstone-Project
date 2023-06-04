@@ -70,10 +70,12 @@ _Week 5 (May 21 - 27)_ → Crops + Inventory
       - Will need to be able to pick other tools and use 🦋 AS
 
 _Week 6 (May 28 - Jun 3)_ →  Inventory + Farmers Market
- - Continue coding inventory section ❗❗
  - code crops growing back AS
-      - will need to restart the day AS
- - code planting crops
+      - will need to restart the day  🦋 AS
+ - code soil patches 🦋 AS
+ - code "farmable" area 🦋 AS
+    - certain areas only where player can farm🦋 AS
+ - ability to use gardening hoe 🦋 AS
 - Farmers market:❗❗ AM (PLAN)
       - Code feature where character can go and sell off their farming goods ❗❗
       - This is so they can make money
