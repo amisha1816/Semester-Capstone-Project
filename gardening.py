@@ -46,3 +46,10 @@ class Ground_Dirt:
                     print('bloop')
                     self.grid[y][x].append('X') # so if something is planted on this spot, label it as 'X', this will mean we cannot plant anything on top of this
                     self.dirt_patches()
+      def dirt_patches(self):
+        self.dirt.empty()
+        for index_row,row in enumerate(self.grid):
+            for index_cell,cell in enumerate(row):
+                if "X" in cell:
+                    print('bloop bloop')
+                    Dirt_Bloop((index_cell * tile_size,index_row * tile_size),self.dirt_image,[self.all_sprites,self.dirt])
