@@ -57,7 +57,8 @@ _Week 5 (May 21 - 27)_ → Crops + Inventory
  - crops appearing  🦋 AS
        - i coded that apples appear rn 🦋 AS
  - crops being harvested 🦋 AS
-       -  harvesting animation 🦋 AS
+       -  photo edit character using axe sprite animations 🦋 AS
+        - connect axe use to certain key input AND only when we in contact with tree 🦋 AS
  - Code in feature that we can use tools to mine crops 🦋 AS
       - They need certain amount of hits or something 🦋 AS
  - Coded inventory logic 🦋 AS
@@ -76,6 +77,8 @@ _Week 6 (May 28 - Jun 3)_ →  Inventory + Farmers Market
  - code "farmable" area 🦋 AS
     - certain areas only where player can farm🦋 AS
  - ability to use gardening hoe 🦋 AS
+ - photo edit character using hoe sprite animations 🦋 AS
+ - connect gardening hoe use certain key input AND only when we in "farmable area 🦋 AS
 - Farmers market:❗❗ AM (PLAN)
       - Code feature where character can go and sell off their farming goods ❗❗
       - This is so they can make money
