@@ -7,6 +7,7 @@ from setting import *
 from pytmx.util_pygame import load_pygame
 from menu import Menu # 🌷
 from transistion import Transistion
+from gardening import Ground_Dirt
 
 class Level:
     def __init__(self):
