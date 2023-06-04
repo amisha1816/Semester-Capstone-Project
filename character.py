@@ -117,6 +117,9 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
             if self.selected_tool == 'axe':
                 self.update_action(1)
                 self.timers['tool use'].start()
+        elif keys[pg.K_s]:
+            if self.selected_tool == 'watercan':
+                self.timers['tool use'].start()
         else:
             if keys[pg.K_UP]: 
                 self.direction.y = -1 # start moving up by 1 
