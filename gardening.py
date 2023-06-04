@@ -37,3 +37,12 @@ class Ground_Dirt:
                     y= index_row * tile_size
                     rect= pg.Rect(x,y,tile_size,tile_size)
                     self.hit_rect.append(rect)
+      def hit(self,point):
+        for rect in self.hit_rect:
+            if rect.collidepoint(point):
+                x=rect.x//tile_size
+                y=rect.y//tile_size
+                if 'F' in self.grid[y][x]:
+                    print('bloop')
+                    self.grid[y][x].append('X') # so if something is planted on this spot, label it as 'X', this will mean we cannot plant anything on top of this
+                    self.dirt_patches()
