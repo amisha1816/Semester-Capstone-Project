@@ -72,7 +72,8 @@ class Level:
                     collision_sprites = self.collision_sprites,
                     trees = self.tree_sprites,
                     interaction = self.interaction_sprites, # creating instances of character class
-                    farmer_market = self.farmer_market) # 🌷    
+                    farmer_market = self.farmer_market,
+		    dirt=self.dirt_layer)    
              if obj.name == 'cozy bed':
                 print('bed here')
                 Another_Shit_Show_Day_Mat((obj.x,obj.y),(obj.width,obj.height),(self.interaction_sprites),'cozy bed')
