@@ -101,6 +101,11 @@ class Menu:
                             
                         
                 else:
+                    seed_price = BUY_STUFF[selected_item]
+                    if self.character.money >= seed_price: # checking if they have enough money
+                        self.character.seed_stuff[selected_item] += 1 # increasing our inventory for this item
+                        self.character.money -= seed_price
+                        
                 
         # restrict selection
         if self.index < 0:
