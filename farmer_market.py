@@ -1,15 +1,14 @@
 
-### Farmer's Market 🍉
+# Farmer's Market 🍉
 
-
+'''
 Overview of methods in farmer_market:
 - ```self.options``` → contains all the items avaliable to sell/buy in the market (pulls from character code)
 - ```self.buy_border``` → allows us to seperate our selling and buying items
 - ```money_money_money``` → method that puts our money value on screen
 - ```close``` → method that allows us to close out of the fm
+'''
 
-
-```python
 import pygame as pg
 from setting import *
 from character import Character
@@ -49,6 +48,7 @@ class Menu:
         # 0 is for the border width, border radius is 6 (rounding)
         
         screen.blit(money_text, money_block)
+        # 🌱 blits our money block + money amt on screen (rn no coordinates are needed bc we want to keep it in the top left
         
         
     # 🎂 (5/30)
@@ -58,7 +58,7 @@ class Menu:
         self.item_names = [] 
         self.total_height = 0
         
-        for item in self.options: # allows us  to add all our item titles to our rendered title list
+        for item in self.options: # allows us  to add all our item options to our rendered options list
             item_name = self.font.render(item, False, 'Black')
             # ^ format (string, antialias [rounded corners], colour)      
             self.item_names.append(item_name)            
@@ -84,26 +84,29 @@ class Menu:
   
     def show_block(self, text, amount, pos): # actually creates our individual blocks
         
-        background = pg.Rect(self.bg.left, pos, self.width, text.get_height()+(self.padding*2)) # creating our background rect
-        # ^ similar to how we did in base_setup()
-        
+        background = pg.Rect(self.bg.left, pos, self.width, text.get_height()+(self.padding*2)) # creating our background rect  
         # self.all_block.rect comes from our bg rect in block_setup
         pg.draw.rect(screen, 'White', background, 0, 5)
+        
+        text_rect = text.get_rect(self.bg.left + 20, background))
+        self.screen.blit(text, text_rect)
     
     def update(self): # diplays the menu, it's like the button all over again :(
         self.close()
         screen.blit(self.image, (0,0)) # 0,0, so it fills the whole screen
+        # 🌱 blitting our farmer market bg on screen
         self.money_money_money()
             
         # 🎂 (5/30
-        for item_index, item_name in enumerate(self.item_names):
+        for item_index, item_name in enumerate(self.item_names): # blitting our text
         # enumerate counts our iterations, counter will be applied to item_index automatically
         # needed this to differentiate btwn selling and buying items (w/ self.buy_border) 
         
-            poss = 50 + item_index * (item_name.get_height() + (self.padding * 2) + self.space)
-            #poss = item_index * (item_name.get_height() + (self.padding * 2) + self.space)
+            position = self.bg.pos + item_index * (item_name.get_height() + (self.padding * 2) + self.space)
+            # self.bg is the rect, the .pos is the top, (item_name.get_height() + (self.padding * 2) + self.space) allows us to create our blocks while item_index controls where they are
+           
             # ^ this creates our individual blocks
-            self.show_block(item_name, 0, poss)
+            self.show_block(item_name, 0, position)
                                               
             screen.blit(item_name,(250, item_index * 50)) # ❗CHANGE COORDINATES ❗F
                 
