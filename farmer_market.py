@@ -49,28 +49,26 @@ class Menu:
         
         
     # 🎂 (5/30)
-    def base_setup(self): # creates our block titles and creates some screen settings! 
+    def base_setup(self): # creates our block names and creates some screen settings! 
         
         # text
         self.item_names = [] 
         self.total_height = 0
         
         for item in self.options: # allows us  to add all our item options to our rendered options list
-            item_name = self.font.render(item, False, 'Black')
+            self.item_name = self.font.render(item, False, 'Black')
             # ^ format (string, antialias [rounded corners], colour)      
             self.item_names.append(item_name)            
-            self.total_height += (item_name.get_height() +20) + self.padding * 2
+            self.total_height += self.item_name.get_height() + 20 + (self.padding * 2)
             # get_height() is a pg function to return the height of a surface
         
             
         # screen set_up
         self.total_height += (len(self.item_names) - 1) * self.space
         # creates spaces btwn our blocks according to our attribute self.space in our init method
-        self.menu_top = h / 2 - self.total_height / 2 
+        self.menu_top = h / 2 - self.total_height / 2 # very top of our menu
         self.bg = pg.Rect(100, self.menu_top, self.width, self.total_height) # background that pulls everything tgthr
-        # ❗ the 100 is just a random placement #, we need to adjust to our coordinates 
-        # h is pulled from settings
-        # we subtract self.total_height bc the screen display works differently, it's like flipped
+        # ^ rect that ties together our everything tgthr
         
     def select_stuff(self): # allows the player to close the farmer's market
         keys= pg.key.get_pressed() # getting all the keys
