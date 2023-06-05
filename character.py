@@ -53,7 +53,7 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         
         # 🎂 list of seeds that we can buy from the farmer's market
         self.seed_stuff = {
-            'corn_seed': 0
+            'corn_seed': 100, # temporary 100 just so I can see if the amounts are blitting properly
             'tomato_seed': 0 
         }
         
