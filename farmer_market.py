@@ -12,6 +12,7 @@ Overview of methods in farmer_market:
 import pygame as pg
 from setting import *
 from character import Character
+from timer import Timer
 screen = pg.display.set_mode((w,h))
 
 class Menu:
@@ -36,6 +37,10 @@ class Menu:
         # pulls both our inventory dictionaries from character
         self.buy_border = len(character.crop_stuff) - 1 # allows us to seperate our selling and buying items
         self.base_setup()
+    
+        # being able to buy 🤯
+        self.index = 0
+        self.timer = Timer(200)
     
     # 🎂 (5/30)
     def money_money_money(self): # puts our money value on screen
@@ -76,23 +81,55 @@ class Menu:
         # h is pulled from settings
         # we subtract self.total_height bc the screen display works differently, it's like flipped
         
-    def close(self): # allows the player to close the farmer's market
+    def select_stuff(self): # allows the player to close the farmer's market
         keys= pg.key.get_pressed() # getting all the keys
         
         if keys[pg.K_ESCAPE]: # if player hits escape, display closes
             self.fm_menu() # I'm not too sure about this line, I think I might be calling the wrong method, CHECK WHEN DEBUGGING
   
-    def show_block(self, text, amount, pos): # actually creates our individual blocks
+        if not self.timer.start():
+            # allows us to select different blocks
+            if keys[pg.K_UP]:
+                self.index -= 1
+                self.timer.start() # ensures that we're not rushing through the different options
+
+            if keys[pg.K_DOWN]:
+                self.index += 1
+                self.timer.start()
+                
+        
+        # restrict selection
+        if self.index < 0:
+            self.index = len(self.options) - 1
+        # this prevents us from selecting an option that isn't there    
+        
+        if self.index > len(self.options) - 1:
+            self.index = 0
+        
+    def show_block(self, text, amount, pos, chosen): # actually creates our individual blocks
         
         background = pg.Rect(self.bg.left, pos, self.width, text.get_height()+(self.padding*2)) # creating our background rect  
         # self.all_block.rect comes from our bg rect in block_setup
         pg.draw.rect(screen, 'White', background, 0, 5)
         
         text_rect = text.get_rect(self.bg.left + 20, background))
+        # the +20 slightly shifts it to the right, so it looks cleaner
         self.screen.blit(text, text_rect)
     
+        # inventory amounts :0
+        amount_text = self.font.render(str(amount), False, 'Black')
+        # we can't render a number to the screen
+        # amount is from the show_block parameters
+        amounts_block = amount_text.get_rect(self.bg.right - 20, bg_rect.centery)
+        screen.blit(amount_text, amount_block)
+        
+        if chosen:
+            pg.draw.rect(screen, 'black', background, 4, 4)
+            # (4, 4) reps the border radius, border width
+        
+    
     def update(self): # diplays the menu, it's like the button all over again :(
-        self.close()
+        self.select_stuff()
         screen.blit(self.image, (0,0)) # 0,0, so it fills the whole screen
         # 🌱 blitting our farmer market bg on screen
         self.money_money_money()
@@ -102,13 +139,17 @@ class Menu:
         # enumerate counts our iterations, counter will be applied to item_index automatically
         # needed this to differentiate btwn selling and buying items (w/ self.buy_border) 
         
-            position = self.bg.pos + item_index * (item_name.get_height() + (self.padding * 2) + self.space)
+            position = self.bg.top + item_index * (item_name.get_height() + (self.padding * 2) + self.space)
             # self.bg is the rect, the .pos is the top, (item_name.get_height() + (self.padding * 2) + self.space) allows us to create our blocks while item_index controls where they are
            
-            # ^ this creates our individual blocks
-            self.show_block(item_name, 0, position)
+            amount_list = self.options = list(character.crop_stuff.values()) + list(character.seed_stuff.values())
+            # ^ pretty similar to our self.options list
+            
+            amount = amount_list(item_index)
+            
+            self.show_block(item_name, amount, position, self.index == item_index)
                                               
-            screen.blit(item_name,(250, item_index * 50)) # ❗CHANGE COORDINATES ❗F
+            # screen.blit(item_name,(250, item_index * 50)) # ❗CHANGE COORDINATES ❗F
                 
     
               
