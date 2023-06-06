@@ -66,8 +66,8 @@ class Menu:
         # ^ this was my pink background in the past
         
         # buy/sell text surface
-        self.buy_text = self.small_font.render('sell', False, 'Red')
-        self.sell_text = self.small_font.render('buy', False, 'Green')
+        self.buy_text = self.small_font.render('buy', False, 'Red')
+        self.sell_text = self.small_font.render('sell', False, 'Green')
         
         
     def select_stuff(self): # allows the player to close the farmer's market
@@ -146,10 +146,10 @@ class Menu:
             
             if self.index <= self.buy_border: # sell
                 bs_rect = self.sell_text.get_rect(midleft = (self.background.left + 250, block_bg.centery))
-                screen.blit(self.buy_text, bs_rect) # checking if the current block we're on is before the end of the buy border
+                screen.blit(self.sell_text, bs_rect) # checking if the current block we're on is before the end of the buy border
             else: # buy
                 bs_rect = self.buy_text.get_rect(midleft = (self.background.left + 250, block_bg.centery))
-                screen.blit(self.sell_text, bs_rect)
+                screen.blit(self.buy_text, bs_rect)
             
 
     def update(self): # diplays the menu, it's like the button all over again :(
