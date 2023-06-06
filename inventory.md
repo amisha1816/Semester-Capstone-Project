@@ -2,7 +2,7 @@
 ### Inventory
 
 ![image](https://github.com/amisha1816/Semester-Capstone-Project/assets/129302600/ca2592ff-871f-4bba-8ceb-3c86d0b90826)
-*so this is my current plan rn, I think I'm going to do similar to the farmer's market with blocks, but they'll include the sprite and the text
+*so this is my current plan rn, I think I'm going to do similar to the farmer's market with blocks, but they'll include the sprite and the text*
 
 
 ```python
