@@ -68,7 +68,7 @@ class Inventory:
         # screen set_up
         self.height = ((tb_padding + 100 + img_txt_padding + 30 + tb_padding) * 2) + self.v_space # ❗ 30 is for text, 100 is for img
         self.top = h / 2 - self.height / 2
-        self.background = pg.Rect(400, self.top, self.width, self.height) # background that pulls everything together ❗ 400
+        self.background = pg.Rect(400, self.top, self.total_width, self.total_height) # background that pulls everything together ❗ 400
 
 # ___________________________________________________________________________________________________________________________
     
