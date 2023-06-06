@@ -25,16 +25,17 @@ APPLE_POSITION= {
     'tree': [(-5,78),(18,17),(50,27),(30,37),(80,47),(90,10)]
 }
 
-sell_prices = [1, 1, 4, 6, 8, 11, 12, 14, 16, 18, 21, 1, 24, 1, 28, 1, 32, 1, 36, 1, 1, 42, 44, 1, 1, 51, 1, 54, 1, 1, 60, 1, 1, 66, 1, 71, 1, 1, 1, 78, 81, 1, 84, 86, 1, 91, 1, 1, 96, 81, 10000]
-sell_random_select = sell_prices[random.randint(1, 49)]
+sell_prices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10000]
+sell_random_select = sell_prices[randint(0, 10)]
 
-if self.fm_active:
-    SELL_STUFF = {
-            'apple': sell_random_select,
-            'corn': sell_random_select,
-            'tomato': sell_random_select
-            }
+SELL_STUFF = {
+        'tree_wood': sell_random_select,
+        'apple': sell_random_select,
+        'corn': sell_random_select,
+        'tomato': sell_random_select
+        }
 
-    BUY_STUFF = {
-            'corn_seed': 5, 
-            'tomato_seed': 5 
+BUY_STUFF = {
+        'corn_seed': 5, 
+        'tomato_seed': 5 
+        }
