@@ -1,7 +1,3 @@
-
-# Farmer's Market 🍉
-
-# imports
 import pygame as pg
 from setting import *
 from character import Character
@@ -17,6 +13,7 @@ class Menu:
         self.character = character
         self.fm_menu = fm_menu # allows us to switch on and off the farmer's market
         self.font = pg.font.SysFont('Cambria', 30)
+        self.small_font = pg.font.SysFont('Cambria', 20)
 
         # fm image
         image = pg.image.load('background/farmers_pic.jpg')
@@ -24,7 +21,7 @@ class Menu:
         self.image = image
 
         # layout
-        self.width = 300 # width of the entire buying section (left to right)
+        self.width = 350 # width of the entire buying section (left to right)
         self.space = 10 # space between the different blocks
         self.padding = 10
 
@@ -56,7 +53,7 @@ class Menu:
         for item in self.options: # allows us  to add all our item options to our rendered options list
             self.item_name = self.font.render(item, False, 'Black')
             # ^ format (string, antialias [rounded corners], colour)      
-            self.item_names.append(item_name)            
+            self.item_names.append(item)            
             self.total_height += self.item_name.get_height() + (self.padding * 2)
             # all this is doing is finding the height of each individual block (text + padding) and adding it to our total height
             
@@ -69,8 +66,8 @@ class Menu:
         # ^ this was my pink background in the past
         
         # buy/sell text surface
-        self.buy_button = self.font.render('buy', False, 'Blue')
-        self.sell_text = self.font.render('sell', False, 'Green')
+        self.buy_text = self.small_font.render('sell', False, 'Red')
+        self.sell_text = self.small_font.render('buy', False, 'Green')
         
         
     def select_stuff(self): # allows the player to close the farmer's market
@@ -90,7 +87,7 @@ class Menu:
                 self.index += 1
                 self.timer.start()
                 
-            if keys[pg.K_space]:
+            if keys[pg.K_SPACE]:
                 selected_item = self.options[self.index]
                 # self.index is directly connected to the item block we've selected, by indexing it we'll receive the correct item name
 
@@ -115,24 +112,25 @@ class Menu:
         if self.index > len(self.options) - 1:
             self.index = 0
         
-    def show_block(self, text, amount, pos, chosen): # actually creates our individual blocks
+    def show_block(self, item_name, amount, pos, chosen): # actually creates our individual blocks
         
         # what do the parameters do 🤔
         # text → item name
         # amount → inventory amount
         # pos → position of where we want the block to be
         
-        block_bg = pg.Rect(self.background.left, pos, self.width, text.get_height()+(self.padding*2)) # creating our background rect  
+        block_bg = pg.Rect(self.background.left, pos, self.width,30 +(self.padding*2)) # creating our background rect  
         # rect → (left, top, width, height)
         # ^ block_bg is the background just for our individual blocks
         # in this case, pos (top) is the only thing thats changing, everything else is staying the same
         pg.draw.rect(screen, 'White', block_bg, 0, 5)
         # 🌱 ^ this line blits the blocks to the screen
         
-        # text
-        text_rect = text.get_rect(midleft = (self.background.left + 20, block_bg.centery)) ❗❗
+        text = self.font.render(str(item_name), False, 'Black')
+        text_rect = text.get_rect(midleft = (self.background.left + 20, block_bg.centery))
+        
         # the +20 slightly shifts it to the right, so it looks cleaner
-        self.screen.blit(text, text_rect)
+        screen.blit(text, text_rect)
          # 🌱 ^ this line blits the text to the screen
     
         # inventory amounts
@@ -147,11 +145,11 @@ class Menu:
             # (4, 4) reps the border radius, border width
             
             if self.index <= self.buy_border: # sell
-                bs_rect = self.sell_text.get_rect(midleft = (self.background.left + 200, block_bg.centery))
+                bs_rect = self.sell_text.get_rect(midleft = (self.background.left + 250, block_bg.centery))
                 screen.blit(self.buy_text, bs_rect) # checking if the current block we're on is before the end of the buy border
-            else: # but
-                bs_rect = self.buy_text.get_rect(midleft = (self.background.left + 200, block_bg.centery))
-                screen.blit(self.buy_text, (self.sell_text, bs_rect)
+            else: # buy
+                bs_rect = self.buy_text.get_rect(midleft = (self.background.left + 250, block_bg.centery))
+                screen.blit(self.sell_text, bs_rect)
             
 
     def update(self): # diplays the menu, it's like the button all over again :(
@@ -165,11 +163,8 @@ class Menu:
         # enumerate counts our iterations, counter will be applied to item_index automatically
         # needed this to differentiate btwn selling and buying items (w/ self.buy_border) 
         
-            position = self.background.top + item_index * (item_name.get_height() + (self.padding * 2) + self.space)
-            amount_list = list(character.crop_stuff.values()) + list(character.seed_stuff.values())
+            text_height = list(item_name)
+            position = self.background.top + item_index * (30 + (self.padding * 2) + self.space)
+            amount_list = list(self.character.crop_stuff.values()) + list(self.character.seed_stuff.values())
             amount = amount_list[item_index]
             self.show_block(item_name, amount, position, self.index == item_index)
-                                              
-                
-    
-              
