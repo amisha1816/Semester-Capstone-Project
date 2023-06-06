@@ -24,7 +24,7 @@ class Level:
 	self.transition = Transistion(self.new_freaking_day,self.character)
         
         # 🌷 farmer's market 🌷
-        self.menu = Menu(self.player, self.farmer_market) # Creates our menu
+        self.menu = Menu(self.character, self.farmer_market) # Creates our menu
         self.fm_active = False # says fm is not active when it's not on screen
     def new_freaking_day(self):
         # for "regrowing" apples each night
