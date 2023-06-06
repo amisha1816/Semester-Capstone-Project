@@ -6,7 +6,7 @@ from setting import *
 
 class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for visible game objects
     # Sprite --> container class to hold and manage multiple Sprite objects
-    def __init__(self,location,group,collision_sprites,trees,interation,farmer_market,dirt): # 🌷 (Thurs. May 25) added in fm as an attribute
+    def __init__(self,location,group,collision_sprites,trees,interation,farmer_market,dirt, inventory): 
         super().__init__(group) # we pass group so when we create instance of this class, object will be inside our group
         # groups -->  allows you to hold and manage multiple Sprite objects
         self.image = pg.Surface((100,100)) # pg.Surface -> for representing images to create a new image object.
@@ -43,6 +43,7 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         self.dirt_layer = dirt
 
         self.farmer_market = farmer_market
+        self.inventory = inventory
         
         self.crop_stuff = {
             'apple': 0,
@@ -177,6 +178,9 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
         
         if keys[pg.K_RETURN]: # if enter was pressed then we are opening up the farmers market page 
             self.farmer_market()   
+                    
+        if keys[pg.K_i]: 
+            self.inventory_screen()
 
 
     def collide(self,direction):
