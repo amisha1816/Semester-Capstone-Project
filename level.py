@@ -5,7 +5,7 @@ from overlay import Overlay
 from sprites import Generic, Flowers,Shitty_Trees,Idiotic_Walls
 from setting import *
 from pytmx.util_pygame import load_pygame
-from menu import Menu # 🌷
+from menu import Menu 
 from transistion import Transistion
 from gardening import Ground_Dirt
 
@@ -23,9 +23,13 @@ class Level:
         self.overlay = Overlay(self.character)
 	self.transition = Transistion(self.new_freaking_day,self.character)
         
-        # 🌷 farmer's market 🌷
+        # farmer's market
         self.menu = Menu(self.character, self.farmer_market) # Creates our menu
         self.fm_active = False # says fm is not active when it's not on screen
+		
+		# inventory
+		self.inventory_active = False
+	
     def new_freaking_day(self):
         # for "regrowing" apples each night
         for tree in self.tree_sprites.sprites():
@@ -73,16 +77,20 @@ class Level:
                     trees = self.tree_sprites,
                     interaction = self.interaction_sprites, # creating instances of character class
                     farmer_market = self.farmer_market,
+					inventory - self.inventory)
 		    dirt=self.dirt_layer)    
              if obj.name == 'cozy bed':
                 print('bed here')
                 Another_Shit_Show_Day_Mat((obj.x,obj.y),(obj.width,obj.height),(self.interaction_sprites),'cozy bed')
 		
 		
-    # farmer's market method 🌷
+    # farmer's market method
     def farmer_market(self):
         self.fm_active = not self.fm_active # allows us to switch our farmer's market on and off with the farmer's market method
     
+	def inventory_screen(self):
+		self.inventory_active = not self.inventory_active
+	
     def adding_to_inventory(self,thing):
         self.character.crop_stuff[thing] += 1 # crop_stuff is inventory dictionary i made in character.py --> here we are increasing the number of that good
 
@@ -97,6 +105,11 @@ class Level:
         else:
             self.all_sprites.update(delta_time)#updates sprite actions # is important since it calls update method on all our sprites
         
+		if self.inventory_active:
+            self.inventory.update()
+        else:
+            self.all_sprites.update(delta_time)
+		
 	print(self.character.crop_stuff)
         if self.character.new_day:
             self.transition.play()
