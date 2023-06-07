@@ -6,6 +6,7 @@ from sprites import Generic, Flowers,Shitty_Trees,Idiotic_Walls
 from setting import *
 from pytmx.util_pygame import load_pygame
 from menu import Menu 
+from inventory import Inventory
 from transistion import Transistion
 from gardening import Ground_Dirt
 
@@ -28,6 +29,7 @@ class Level:
         self.fm_active = False # says fm is not active when it's not on screen
 		
 	# inventory
+	self.inventory_menu = Inventory(self.character, self.inventory_screen)
 	self.inventory_active = False
 	
     def new_freaking_day(self):
@@ -88,8 +90,8 @@ class Level:
     def farmer_market(self):
         self.fm_active = not self.fm_active # allows us to switch our farmer's market on and off with the farmer's market method
     
-	def inventory_screen(self):
-		self.inventory_active = not self.inventory_active
+    def inventory_screen(self):
+	self.inventory_active = not self.inventory_active
 	
     def adding_to_inventory(self,thing):
         self.character.crop_stuff[thing] += 1 # crop_stuff is inventory dictionary i made in character.py --> here we are increasing the number of that good
@@ -105,7 +107,7 @@ class Level:
         else:
             self.all_sprites.update(delta_time)#updates sprite actions # is important since it calls update method on all our sprites
         
-		if self.inventory_active:
+	if self.inventory_active:
             self.inventory.update()
         else:
             self.all_sprites.update(delta_time)
