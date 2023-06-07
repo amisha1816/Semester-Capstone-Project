@@ -28,7 +28,7 @@ class Inventory:
         self.options = list(self.character.crop_stuff.keys()) + list(self.character.seed_stuff.keys())
         
         # rows
-        self.option_border = (len(self.options) - 1) // 2 # allows us to split our list in two, for two sepetate rows
+        self.option_border = 2 # allows us to split our list in two, for two sepetate rows
         self.first_row = self.options[:self.option_border]
         self.second_row = self.options[self.option_border:]
 
@@ -46,8 +46,8 @@ class Inventory:
         # sizing 
         self.total_width = 1000
         self.total_height = 600
-        self.block_width = (self.total_width - (self.h_space * self.option_border + 2)) / len(self.first_row) + 1 # +2 is for the sides # ⭐
-        self.block_height = (self.total_height - (self.v_space * 3)) / 2 # ⭐
+        self.block_width = (self.total_width - (self.h_space * 4)) / 3
+        self.block_height = (self.total_height - (self.v_space * 3)) / 2
         # so based on my current math, each block should be 180 by 160        
 
         self.txt_bg()
@@ -66,7 +66,7 @@ class Inventory:
             
  
         self.top = h / 2 - self.total_height / 2
-        self.background = pg.Rect(self.total_width/2, self.top, self.total_width, self.total_height) # background that pulls everything together ❗ 400
+        self.background = pg.Rect(150, self.top, self.total_width, self.total_height) # background that pulls everything together ❗ 400
 
 # ___________________________________________________________________________________________________________________________
     
@@ -144,7 +144,7 @@ class Inventory:
                 top = self.v_space
                 img_position = (self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1) + 20), top)
                 # + 20 is just for an inden
-            '''          
+   
             else:
                 top = self.v_space * 2 + self.block_height
                 img_position = (self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1) + 20), top)
