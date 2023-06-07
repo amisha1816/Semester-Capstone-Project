@@ -27,8 +27,8 @@ class Level:
         self.menu = Menu(self.character, self.farmer_market) # Creates our menu
         self.fm_active = False # says fm is not active when it's not on screen
 		
-		# inventory
-		self.inventory_active = False
+	# inventory
+	self.inventory_active = False
 	
     def new_freaking_day(self):
         # for "regrowing" apples each night
@@ -77,7 +77,7 @@ class Level:
                     trees = self.tree_sprites,
                     interaction = self.interaction_sprites, # creating instances of character class
                     farmer_market = self.farmer_market,
-					inventory - self.inventory)
+		    inventory = self.inventory,
 		    dirt=self.dirt_layer)    
              if obj.name == 'cozy bed':
                 print('bed here')
