@@ -7,8 +7,6 @@
 ---
 
 ```python
-
-# imports
 import pygame as pg
 from setting import *
 from character import Character
@@ -24,15 +22,15 @@ class Inventory:
         self.character = character
         self.inventory_menu = inventory_menu
         self.font = pg.font.SysFont('Cambria', 30)
-        self.images = [____________________, _________________] # ❗ insert item images here
+        self.images = ['Sprout Lands - Sprites - Basic pack/Characters/cow.webp','Sprout Lands - Sprites - Basic pack/Characters/cow.webp','Sprout Lands - Sprites - Basic pack/Characters/cow.webp','Sprout Lands - Sprites - Basic pack/Characters/cow.webp','Sprout Lands - Sprites - Basic pack/Characters/cow.webp','Sprout Lands - Sprites - Basic pack/Characters/cow.webp' ] # ❗ insert item images here
         
          # options list
-        self.options = list(character.crop_stuff.keys()) + list(character.seed_stuff.keys())
+        self.options = list(self.character.crop_stuff.keys()) + list(self.character.seed_stuff.keys())
         
         # rows
         self.option_border = (len(self.options) - 1) // 2 # allows us to split our list in two, for two sepetate rows
-        self.first_row = self.options[:option_border]
-        self.second_row = self.options[option_border:]
+        self.first_row = self.options[:self.option_border]
+        self.second_row = self.options[self.option_border:]
 
         # selection
         self.index = 0
@@ -45,11 +43,11 @@ class Inventory:
         self.img_txt_padding = 5 # padding btwn img and txt
         # in total per block there will be 25 of padding
         
-        # sizing
-        self.total_width = 600
-        self.total_height = 450
-        self.block_width = (self.total_width - (self.h_space * self.option_border + 2)) / len(self.first_row) # +2 is for the sides
-        self.block_height = (self.total_height - (self.v_space * 3)) / 2
+        # sizing 
+        self.total_width = 1000
+        self.total_height = 600
+        self.block_width = (self.total_width - (self.h_space * self.option_border + 2)) / len(self.first_row) + 1 # +2 is for the sides # ⭐
+        self.block_height = (self.total_height - (self.v_space * 3)) / 2 # ⭐
         # so based on my current math, each block should be 180 by 160        
 
         self.txt_bg()
@@ -67,8 +65,8 @@ class Inventory:
             self.item_names.append(item)            
             
  
-        self.top = h / 2 - (self.height + self.v_space * 1.5)
-        self.background = pg.Rect(400, self.top, self.total_width, self.total_height) # background that pulls everything together ❗ 400
+        self.top = h / 2 - self.total_height / 2
+        self.background = pg.Rect(self.total_width/2, self.top, self.total_width, self.total_height) # background that pulls everything together ❗ 400
 
 # ___________________________________________________________________________________________________________________________
     
@@ -76,7 +74,7 @@ class Inventory:
         keys = pg.key.get_pressed() 
         self.timer.update_tool()
 
-        if keys[pg.K_ESCAPE]: # if player hits escape, display closes
+        if keys[pg.K_SLASH]: # if player hits escape, display closes
             self.inventory_menu()
 
         if not self.timer.start():
@@ -106,28 +104,28 @@ class Inventory:
                             
 # ___________________________________________________________________________________________________________________________ 
 
-    def block(self, img, item_name, left, top, amount, chosen): # creates blocks (bg, text, amount, border)
+    def block(self, item_name, left, top, amount, chosen): # creates blocks (bg, text, amount, border)
 
-        block_bg = pg.Rect(left, top, self.block_width, self.height)
+        block_bg = pg.Rect(left, top, self.block_width, self.block_height)
 
         # pos (l) → defined later within update method
         # top (t) → distance from top that's defined in update method
         # self.block_width → created in init
-        # self.height → created in txt_bg method
+        # self.block_height → created in txt_bg method
 
         pg.draw.rect(screen, 'White', block_bg, 0, 5)
         # 🌱 ^ this line blits the blocks to the screen
 
         # text
         text = self.font.render(str(item_name), False, 'Black')
-        text_rect = text.get_rect(midleft = (block_bg.centerx, block_bg.centery + 30)) # ⭐
-        screen.blit(text, text_rect)
+        text_rect = text.get_rect(midleft = (100, 100)) # ⭐
+        # screen.blit(text, text_rect)
          # 🌱 ^ this line blits the text to the screen
     
         # amounts
         amount_text = self.font.render(str(amount), False, 'Black')
-        amount_block = amount_text.get_rect(block_bg.centerx, block_bg.centery + 50) # ⭐
-        screen.blit(amount_text, amount_block)
+        amount_block = amount_text.get_rect(midleft = (100, 100)) # ⭐
+        # screen.blit(amount_text, amount_block)
         
         if chosen:
             pg.draw.rect(screen, 'black', block_bg, 4, 4) # border when item is selected (this doesn't really do much
@@ -144,17 +142,19 @@ class Inventory:
 
             if item_index <= self.option_border:
                 top = self.v_space
-                img_position = (self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1) + 20), top
+                img_position = (self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1) + 20), top)
                 # + 20 is just for an inden
-                        
+            '''          
             else:
-                top = self.v_space * 2 + self.height
-                img_position = (self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1) + 20), top
-
+                top = self.v_space * 2 + self.block_height
+                img_position = (self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1) + 20), top)
+            
             # img
             img = self.images[item_index]
-            screen.blit(img, img_position)
-            
+            img_surf = pg.Surface(img_position)
+            # screen.blit(img_surf, img_position)
+            '''
+
             # amount
             amount_list = list(self.character.crop_stuff.values()) + list(self.character.seed_stuff.values())
             amount = amount_list[item_index]
