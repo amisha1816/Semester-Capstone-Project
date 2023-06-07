@@ -48,7 +48,7 @@ class Inventory:
         self.total_width = 600
         self.total_height = 450
         self.block_width = (self.total_width - (self.h_space * self.option_border + 2)) / len(self.first_row) # +2 is for the sides
-        self.block_height = (self.total_height - (self.v_space * 3) / 2
+        self.block_height = (self.total_height - (self.v_space * 3)) / 2
         # so based on my current math, each block should be 180 by 160        
 
         self.txt_bg()
@@ -75,26 +75,26 @@ class Inventory:
         keys = pg.key.get_pressed() 
         self.timer.update_tool()
 
-            if keys[pg.K_ESCAPE]: # if player hits escape, display closes
-                self.inventory_menu()
+        if keys[pg.K_ESCAPE]: # if player hits escape, display closes
+            self.inventory_menu()
 
-            if not self.timer.start():
+        if not self.timer.start():
 
-                if keys[pg.K_LEFT]:
-                    self.index -= 1
-                    self.timer.start()
+            if keys[pg.K_LEFT]:
+                self.index -= 1
+                self.timer.start()
 
-                if keys[pg.K_RIGHT]:
-                    self.index += 1
-                    self.timer.start()
+            if keys[pg.K_RIGHT]:
+                self.index += 1
+                self.timer.start()
 
-                if keys[pg.K_DOWN]:
-                    self.index += len(self.first_row)
-                    self.timer.start()
+            if keys[pg.K_DOWN]:
+                self.index += len(self.first_row)
+                self.timer.start()
 
-                if keys[pg.K_UP]:
-                    self.index -= len(self.first_row)
-                    self.timer.start()
+            if keys[pg.K_UP]:
+                self.index -= len(self.first_row)
+                self.timer.start()
                     
         # restrict selection
         if self.index < 0:
@@ -105,7 +105,7 @@ class Inventory:
                             
 # ___________________________________________________________________________________________________________________________ 
 
-    def block(self, item_name, left, top, amount, chosen): # creates blocks (bg, text, amount, border)
+    def block(self, img, item_name, left, top, amount, chosen): # creates blocks (bg, text, amount, border)
 
         block_bg = pg.Rect(left, top, self.block_width, self.height)
 
@@ -125,7 +125,7 @@ class Inventory:
     
         # amounts
         amount_text = self.font.render(str(amount), False, 'Black')
-        amount_block = amount_text.get_rect(block_bg.centerx, block_bg.centery + 50)) ) # ⭐
+        amount_block = amount_text.get_rect(block_bg.centerx, block_bg.centery + 50) # ⭐
         screen.blit(amount_text, amount_block)
         
         if chosen:
@@ -135,18 +135,28 @@ class Inventory:
             
     def update(self):
         self.select_stuff()
-        pg.draw.rect(screen, 'Black' self.background)
+        pg.draw.rect(screen, 'Black', self.background)
 
         for item_index, item_name in enumerate(self.item_names):
-
+            
             left = self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1))
 
             if item_index <= self.option_border:
                 top = self.v_space
+                img_position = (self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1) + 20), top
+                # + 20 is just for an inden
+                        
             else:
                 top = self.v_space * 2 + self.height
+                img_position = (self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1) + 20), top
 
+            # img
+            img = self.images[item_index]
+            screen.blit(img, img_position)
+            
+            # amount
             amount_list = list(self.character.crop_stuff.values()) + list(self.character.seed_stuff.values())
             amount = amount_list[item_index]
+            
             self.block(item_name, left, top, amount, self.index == item_index) 
  
