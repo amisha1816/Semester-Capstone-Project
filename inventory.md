@@ -6,7 +6,6 @@
 
 ---
 
-
 ```python
 
 # imports
@@ -24,21 +23,10 @@ class Inventory:
   
         self.inventory_menu = inventory_menu
         self.font = pg.font.SysFont('Cambria', 30)
-        self.img_list = (______________, ____________________)
+        self.images = [____________________, _________________] # ❗ insert item images here
         
-        # sizing
-        self.total_width = 600
-        self.total_height = 450
-        
-        # spacing and padding
-        self.v_space = 30 # space between the different rows
-        self.h_space = 60 # space btwn the different blocks within the row
-        self.tb_padding = 10 # padding at the top of the block (top to img start) * at the bottom of the block (txt bottom to block bottom)
-        self.img_txt_padding = 5 # padding btwn img and txt
-        
-        # options list
+         # options list
         self.options = list(character.crop_stuff.keys()) + list(character.seed_stuff.keys())
-        self.row_setup()
         
         # rows
         self.option_border = (len(self.options) - 1) // 2 # allows us to split our list in two, for two sepetate rows
@@ -49,25 +37,36 @@ class Inventory:
         self.index = 0
         self.timer = Timer(200)
         
-        # images
-        self.images = [____________________, _________________] # ❗ insert item images here
+        # spacing and padding
+        self.v_space = 30 # space between the different rows
+        self.h_space = 30 # space btwn the different blocks within the row
+        self.tb_padding = 10 # padding at the top of the block (top to img start) * at the bottom of the block (txt bottom to block bottom)
+        self.img_txt_padding = 5 # padding btwn img and txt
+        # in total per block there will be 25 of padding
         
+        # sizing
+        self.total_width = 600
+        self.total_height = 450
+        self.block_width = (self.total_width - (self.h_space * self.option_border + 2)) / len(self.first_row) # +2 is for the sides
+        self.block_height = (self.total_height - (self.v_space * 3) / 2
+        # so based on my current math, each block should be 180 by 160        
+
+        self.txt_bg()
+                             
 # ___________________________________________________________________________________________________________________________
 
     def txt_bg(self): # creates our text and background
         
         # text
         self.item_names = [] 
-        self.total_height = 0
         
         # rendering text and additing it to our text_item
         for item in self.options:
             self.item_name = self.font.render(item, False, 'Black')    
             self.item_names.append(item)            
             
-        # screen set_up
-        self.height = ((tb_padding + 100 + img_txt_padding + 30 + tb_padding) * 2) + self.v_space # ❗ 30 is for text, 100 is for img
-        self.top = h / 2 - self.height / 2
+ 
+        self.top = h / 2 - (self.height + self.v_space * 1.5)
         self.background = pg.Rect(400, self.top, self.total_width, self.total_height) # background that pulls everything together ❗ 400
 
 # ___________________________________________________________________________________________________________________________
@@ -77,7 +76,7 @@ class Inventory:
         self.timer.update_tool()
 
             if keys[pg.K_ESCAPE]: # if player hits escape, display closes
-                self.fm_menu()
+                self.inventory_menu()
 
             if not self.timer.start():
 
@@ -90,11 +89,11 @@ class Inventory:
                     self.timer.start()
 
                 if keys[pg.K_DOWN]:
-                    self.index += 3
+                    self.index += len(self.first_row)
                     self.timer.start()
 
                 if keys[pg.K_UP]:
-                    self.index -= 1
+                    self.index -= len(self.first_row)
                     self.timer.start()
                     
         # restrict selection
@@ -103,5 +102,51 @@ class Inventory:
         
         if self.index > len(self.options) - 1:
             self.index = 0
+                            
+# ___________________________________________________________________________________________________________________________ 
 
-                  
+    def block(self, item_name, left, top, amount, chosen): # creates blocks (bg, text, amount, border)
+
+        block_bg = pg.Rect(left, top, self.block_width, self.height)
+
+        # pos (l) → defined later within update method
+        # top (t) → distance from top that's defined in update method
+        # self.block_width → created in init
+        # self.height → created in txt_bg method
+
+        pg.draw.rect(screen, 'White', block_bg, 0, 5)
+        # 🌱 ^ this line blits the blocks to the screen
+
+        # text
+        text = self.font.render(str(item_name), False, 'Black')
+        text_rect = text.get_rect(midleft = (block_bg.centerx, block_bg.centery + 30)) # ⭐
+        screen.blit(text, text_rect)
+         # 🌱 ^ this line blits the text to the screen
+    
+        # amounts
+        amount_text = self.font.render(str(amount), False, 'Black')
+        amount_block = amount_text.get_rect(block_bg.centerx, block_bg.centery + 50)) ) # ⭐
+        screen.blit(amount_text, amount_block)
+        
+        if chosen:
+            pg.draw.rect(screen, 'black', block_bg, 4, 4) # border when item is selected (this doesn't really do much
+            
+# ___________________________________________________________________________________________________________________________ 
+            
+    def update(self):
+        self.select_stuff()
+        pg.draw.rect(screen, 'Black' self.background)
+
+        for item_index, item_name in enumerate(self.item_names):
+
+            left = self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1))
+
+            if item_index <= self.option_border:
+                top = self.v_space
+            else:
+                top = self.v_space * 2 + self.height
+
+            amount_list = list(self.character.crop_stuff.values()) + list(self.character.seed_stuff.values())
+            amount = amount_list[item_index]
+            self.block(item_name, left, top, amount, self.index == item_index) 
+ 
