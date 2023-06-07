@@ -19,8 +19,9 @@ screen = pg.display.set_mode((w,h))
 
 # main class 
 class Inventory:
-    def __init__(self, inventory_menu): # basic set_up
+    def __init__(self, character, inventory_menu): # basic set_up
   
+        self.character = character
         self.inventory_menu = inventory_menu
         self.font = pg.font.SysFont('Cambria', 30)
         self.images = [____________________, _________________] # ❗ insert item images here
