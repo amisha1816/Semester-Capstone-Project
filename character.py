@@ -103,6 +103,8 @@ class Character(pg.sprite.Sprite): # py.sprite.Sprite -> Simple base class for v
                     print('hit')
         if self.selected_tool== 'hoe' and keys[pg.K_s]:
             self.dirt_layer.hit(self.target_location)
+        if self.selected_tool == 'watercan' and keys[pg.K_w]:
+            self.dirt_layer.watering_the_shitlings(self.target_location)
              
     def get_target_location(self):
         if self.direction.x == 1:
