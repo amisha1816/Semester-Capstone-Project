@@ -1,20 +1,3 @@
-
-### Inventory
-
-![image](https://github.com/amisha1816/Semester-Capstone-Project/assets/129302600/ca2592ff-871f-4bba-8ceb-3c86d0b90826)
-*so this is my current plan rn, I think I'm going to do similar to the farmer's market with blocks, but they'll include the sprite and the text*
-
----
-
-```python
-import pygame as pg
-from setting import *
-from character import Character
-from timer import Timer
-screen = pg.display.set_mode((w,h))
-
-# ___________________________________________________________________________________________________________________________
-
 # main class 
 class Inventory:
     def __init__(self, character, inventory_menu): # basic set_up
@@ -118,13 +101,13 @@ class Inventory:
 
         # text
         text = self.font.render(str(item_name), False, 'Black')
-        text_rect = text.get_rect(midleft = (100, 100)) # ⭐
+        text_rect = text.get_rect(midleft = (100, 100))
         # screen.blit(text, text_rect)
          # 🌱 ^ this line blits the text to the screen
     
         # amounts
         amount_text = self.font.render(str(amount), False, 'Black')
-        amount_block = amount_text.get_rect(midleft = (100, 100)) # ⭐
+        amount_block = amount_text.get_rect(midleft = (100, 100))
         # screen.blit(amount_text, amount_block)
         
         if chosen:
@@ -153,8 +136,7 @@ class Inventory:
             img = self.images[item_index]
             img_surf = pg.Surface(img_position)
             # screen.blit(img_surf, img_position)
-            '''
-
+            
             # amount
             amount_list = list(self.character.crop_stuff.values()) + list(self.character.seed_stuff.values())
             amount = amount_list[item_index]
