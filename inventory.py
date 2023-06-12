@@ -11,9 +11,8 @@ class Inventory:
         self.options = list(self.character.crop_stuff.keys()) + list(self.character.seed_stuff.keys())
         
         # rows
-        self.option_border = 2 # allows us to split our list in two, for two sepetate rows
-        self.first_row = self.options[:self.option_border]
-        self.second_row = self.options[self.option_border:]
+        self.first_row = self.options[:3]
+        self.second_row = self.options[3:]
 
         # selection
         self.index = 0
@@ -123,18 +122,19 @@ class Inventory:
             
             left = self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1))
 
-            if item_index <= self.option_border:
-                top = self.v_space
-                img_position = (self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1) + 20), top)
+            if item_index <= 3:
+                top = self.top + self.v_space
+                # img_position = (self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1) + 20), top)
                 # + 20 is just for an inden
    
-            else:
+            '''else:
                 top = self.v_space * 2 + self.block_height
                 img_position = (self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1) + 20), top)
-            
+            '''
+    
             # img
-            img = self.images[item_index]
-            img_surf = pg.Surface(img_position)
+            # img = self.images[item_index]
+            # img_surf = pg.Surface(img_position)
             # screen.blit(img_surf, img_position)
             
             # amount
