@@ -93,7 +93,7 @@ class Inventory:
 
     def block(self, item_name, left, top, chosen): # creates blocks (bg, text, amount, border)
 
-        block_bg = pg.Rect(left, top, self.block_width, self.block_height)
+        block_bg = pg.Rect(left, top, amount, self.block_width, self.block_height)
 
         # pos (l) → defined later within update method
         # top (t) → distance from top that's defined in update method
@@ -105,17 +105,17 @@ class Inventory:
 
         # text
         text = self.font.render(str(item_name), False, 'Black')
-        text_rect = text.get_rect(bottomleft = (block_bg.top + 100, left + 80))
+        text_rect = text.get_rect(bottomleft = (block_bg.centerx, block_bg.top + 160))
         screen.blit(text, text_rect)
          # 🌱 ^ this line blits the text to the screen
     
         # amounts
         amount_text = self.font.render(str(amount), False, 'Black')
-        amount_block = amount_text.get_rect(bottomleft = (block_bg.top + 160, left + 80))
+        amount_block = amount_text.get_rect(bottomleft = (block_bg.centerx, block_bg.top + 160))
         screen.blit(amount_text, amount_block)
         
         if chosen:
-            pg.draw.rect(screen, 'red', block_bg, 6, 5) # border when item is selected (this doesn't really do much
+            pg.draw.rect(screen, 'green', block_bg, 6, 5) # border when item is selected (this doesn't really do much
             
 # ___________________________________________________________________________________________________________________________ 
             
@@ -124,6 +124,7 @@ class Inventory:
         pg.draw.rect(screen, 'Black', self.background)
 
         for item_index, item_name in enumerate(self.item_names):
+            # enumerate count starts at 0
             
             if item_index <= 2:
                 left = self.background.left + (self.block_width * item_index) + (self.h_space * (item_index + 1))
@@ -133,18 +134,19 @@ class Inventory:
             
             if item_index <= 2:
                 top = self.top + self.v_space
-                # img_position = (self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1) + 20), top)
                 # + 20 is just for an inden
    
             if item_index >= 3:
                 top = self.top + self.v_space + self.block_height + self.v_space
                 # img_position = (self.background.left + (self.block_width * item_name.index) + (self.h_space * (self.index + 1) + 20), top)
             
-    
-            # img
-            # img = self.images[item_index]
-            # img_surf = pg.Surface(img_position)
-            # screen.blit(img_surf, img_position)
+            amount_list = list(self.character.crop_stuff.values()) + list(self.character.seed_stuff.values())
+            amount = amount_list[item_index]
             
-            self.block(item_name, left, top, self.index == item_index) 
+            # images
+            img = self.images[item_index]
+            img_position = img.get_rect(topleft = (block_bg.centerx, block_bg.centery))
+            screen.blit(img, img_position)
+            
+            self.block(item_name, left, top, amount, self.index == item_index) 
  
