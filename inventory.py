@@ -91,7 +91,7 @@ class Inventory:
                             
 # ___________________________________________________________________________________________________________________________ 
 
-    def block(self, item_name, left, top, amount, chosen): # creates blocks (bg, text, amount, border)
+    def block(self, item_name, left, top, chosen): # creates blocks (bg, text, amount, border)
 
         block_bg = pg.Rect(left, top, self.block_width, self.block_height)
 
@@ -105,17 +105,17 @@ class Inventory:
 
         # text
         text = self.font.render(str(item_name), False, 'Black')
-        text_rect = text.get_rect(midleft = (top + 140, left))
+        text_rect = text.get_rect(bottomleft = (top + 30, left))
         screen.blit(text, text_rect)
          # 🌱 ^ this line blits the text to the screen
     
         # amounts
         amount_text = self.font.render(str(amount), False, 'Black')
-        amount_block = amount_text.get_rect(midleft = (top + 160, left))
+        amount_block = amount_text.get_rect(bottomleft = (top + 100, left))
         screen.blit(amount_text, amount_block)
         
         if chosen:
-            pg.draw.rect(screen, 'red', block_bg, 4, 4) # border when item is selected (this doesn't really do much
+            pg.draw.rect(screen, 'red', block_bg, 6, 5) # border when item is selected (this doesn't really do much
             
 # ___________________________________________________________________________________________________________________________ 
             
@@ -132,8 +132,8 @@ class Inventory:
                 # + 20 is just for an inden
    
             else:
-                top = self.top + self.v_space + 180 + self.v_space
-                left = self.background.left + (self.block_width * item_index) + (self.h_space * (item_index + 1))
+                top = self.top + self.v_space + self.block_height + self.v_space
+                left = 150 + self.block_width * item_index + (30  * (item_index + 1)
                 # img_position = (self.background.left + (self.block_width * item_name.index) + (self.h_space * (self.index + 1) + 20), top)
             
     
@@ -142,9 +142,5 @@ class Inventory:
             # img_surf = pg.Surface(img_position)
             # screen.blit(img_surf, img_position)
             
-            # amount
-            amount_list = list(self.character.crop_stuff.values()) + list(self.character.seed_stuff.values())
-            amount = amount_list[item_index]
-            
-            self.block(item_name, left, top, amount, self.index == item_index) 
+            self.block(item_name, left, top, self.index == item_index) 
  
