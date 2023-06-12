@@ -66,11 +66,11 @@ class Inventory:
 
         if not self.timer.start():
 
-            if keys[pg.K_LEFT]:
+            if keys[pg.K_g]:
                 self.index -= 1
                 self.timer.start()
 
-            if keys[pg.K_RIGHT]:
+            if keys[pg.K_h]:
                 self.index += 1
                 self.timer.start()
 
@@ -105,13 +105,13 @@ class Inventory:
 
         # text
         text = self.font.render(str(item_name), False, 'Black')
-        text_rect = text.get_rect(bottomleft = (top + 30, left))
+        text_rect = text.get_rect(bottomleft = (block_bg.top + 100, left + 80))
         screen.blit(text, text_rect)
          # 🌱 ^ this line blits the text to the screen
     
         # amounts
         amount_text = self.font.render(str(amount), False, 'Black')
-        amount_block = amount_text.get_rect(bottomleft = (top + 100, left))
+        amount_block = amount_text.get_rect(bottomleft = (block_bg.top + 160, left + 80))
         screen.blit(amount_text, amount_block)
         
         if chosen:
@@ -125,15 +125,15 @@ class Inventory:
 
         for item_index, item_name in enumerate(self.item_names):
             
+            left = self.background.left + (self.block_width * item_index) + (self.h_space * (item_index + 1))
+            
             if item_index <= 2:
                 top = self.top + self.v_space
-                left = self.background.left + (self.block_width * item_index) + (self.h_space * (item_index + 1))
                 # img_position = (self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1) + 20), top)
                 # + 20 is just for an inden
    
-            else:
+            if item_index >= 3:
                 top = self.top + self.v_space + self.block_height + self.v_space
-                left = 150 + self.block_width * item_index + (30  * (item_index + 1)
                 # img_position = (self.background.left + (self.block_width * item_name.index) + (self.h_space * (self.index + 1) + 20), top)
             
     
