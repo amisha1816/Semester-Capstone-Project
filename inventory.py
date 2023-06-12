@@ -1,3 +1,8 @@
+import pygame as pg
+from setting import *
+from timer import Timer
+screen = pg.display.set_mode((w,h))
+
 # main class 
 class Inventory:
     def __init__(self, character, inventory_menu): # basic set_up
@@ -100,17 +105,17 @@ class Inventory:
 
         # text
         text = self.font.render(str(item_name), False, 'Black')
-        text_rect = text.get_rect(midleft = (100, 100))
-        # screen.blit(text, text_rect)
+        text_rect = text.get_rect(midleft = (top + 140, left))
+        screen.blit(text, text_rect)
          # 🌱 ^ this line blits the text to the screen
     
         # amounts
         amount_text = self.font.render(str(amount), False, 'Black')
-        amount_block = amount_text.get_rect(midleft = (100, 100))
-        # screen.blit(amount_text, amount_block)
+        amount_block = amount_text.get_rect(midleft = (top + 160, left))
+        screen.blit(amount_text, amount_block)
         
         if chosen:
-            pg.draw.rect(screen, 'black', block_bg, 4, 4) # border when item is selected (this doesn't really do much
+            pg.draw.rect(screen, 'red', block_bg, 4, 4) # border when item is selected (this doesn't really do much
             
 # ___________________________________________________________________________________________________________________________ 
             
@@ -120,17 +125,17 @@ class Inventory:
 
         for item_index, item_name in enumerate(self.item_names):
             
-            left = self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1))
-
-            if item_index <= 3:
+            if item_index <= 2:
                 top = self.top + self.v_space
+                left = self.background.left + (self.block_width * item_index) + (self.h_space * (item_index + 1))
                 # img_position = (self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1) + 20), top)
                 # + 20 is just for an inden
    
-            '''else:
-                top = self.v_space * 2 + self.block_height
-                img_position = (self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1) + 20), top)
-            '''
+            else:
+                top = self.top + self.v_space + 180 + self.v_space
+                left = self.background.left + (self.block_width * item_index) + (self.h_space * (item_index + 1))
+                # img_position = (self.background.left + (self.block_width * item_name.index) + (self.h_space * (self.index + 1) + 20), top)
+            
     
             # img
             # img = self.images[item_index]
