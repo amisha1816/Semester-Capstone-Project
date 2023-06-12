@@ -125,7 +125,11 @@ class Inventory:
 
         for item_index, item_name in enumerate(self.item_names):
             
-            left = self.background.left + (self.block_width * item_index) + (self.h_space * (item_index + 1))
+            if item_index <= 2:
+                left = self.background.left + (self.block_width * item_index) + (self.h_space * (item_index + 1))
+            else:
+                new_item_index = item_index - 3
+                left = self.background.left + (self.block_width * new_item_index) + (self.h_space * (new_item_index + 1))
             
             if item_index <= 2:
                 top = self.top + self.v_space
