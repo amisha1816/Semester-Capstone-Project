@@ -91,7 +91,7 @@ class Inventory:
                             
 # ___________________________________________________________________________________________________________________________ 
 
-    def block(self, item_name, left, top, chosen): # creates blocks (bg, text, amount, border)
+    def block(self, item_name, left, top, img, chosen): # creates blocks (bg, text, amount, border)
 
         block_bg = pg.Rect(left, top, amount, self.block_width, self.block_height)
 
@@ -113,6 +113,10 @@ class Inventory:
         amount_text = self.font.render(str(amount), False, 'Black')
         amount_block = amount_text.get_rect(bottomleft = (block_bg.centerx, block_bg.top + 160))
         screen.blit(amount_text, amount_block)
+        
+        # images
+        img_position = img.get_rect(topleft = (block_bg.centerx, block_bg.centery)) # 🐋
+        screen.blit(img, img_position) # 🐋
         
         if chosen:
             pg.draw.rect(screen, 'green', block_bg, 6, 5) # border when item is selected (this doesn't really do much
@@ -144,9 +148,8 @@ class Inventory:
             amount = amount_list[item_index]
             
             # images
-            img = self.images[item_index]
-            img_position = img.get_rect(topleft = (block_bg.centerx, block_bg.centery))
-            screen.blit(img, img_position)
+            img_link = self.images[item_index] # 🐋
+            img = pg.img.load(img_link) # 🐋
             
-            self.block(item_name, left, top, amount, self.index == item_index) 
+            self.block(item_name, left, top, img, amount, self.index == item_index) 
  
