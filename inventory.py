@@ -5,8 +5,9 @@ screen = pg.display.set_mode((w,h))
 
 # main class 
 class Inventory:
-    def __init__(self, character, inventory_menu): # basic set_up
+    def __init__(self, character, inventory_menu):
   
+        # base set-up
         self.character = character
         self.inventory_menu = inventory_menu
         self.font = pg.font.SysFont('Cambria', 24)
@@ -20,7 +21,7 @@ class Inventory:
         self.second_row = self.options[3:]
 
         # selection
-        self.index = 0
+        self.index = 0 # current block position, e.g. if on the top right box it would be 2, the bottom right would be 5
         self.timer = Timer(200)
         
         # spacing and padding
@@ -32,26 +33,26 @@ class Inventory:
         self.total_height = 600
         self.block_width = (self.total_width - (self.h_space * 4)) / 3
         self.block_height = (self.total_height - (self.v_space * 3)) / 2
-        # so based on my current math, each block should be 180 by 160        
-
+        
         self.txt_bg()
                              
 # ___________________________________________________________________________________________________________________________
 
-    def txt_bg(self): # creates our text and background
+    def txt_bg(self): # creates the text and background
         
         # text
         self.item_names = [] 
         
-        # rendering text and additing it to our text_item
+        # rendering text and additing it to our self.item_names
         for item in self.options:
             self.item_name = self.font.render(item, False, 'Black')    
             self.item_names.append(item)            
             
  
         self.top = h / 2 - self.total_height / 2
-        self.background = pg.Rect(150, self.top, self.total_width, self.total_height) # background that pulls everything together ❗ 400
-
+        self.background = pg.Rect(150, self.top, self.total_width, self.total_height)
+        # ^ this is the brown base background of the inventory
+        
 # ___________________________________________________________________________________________________________________________
     
     def select_stuff(self):
@@ -88,35 +89,34 @@ class Inventory:
                             
 # ___________________________________________________________________________________________________________________________ 
 
-    def block(self, item_name, left, top, amount, img, chosen): # creates blocks (bg, text, amount, border)
+    def block(self, item_name, left, top, amount, img, chosen): # creates all the blocks
 
+        # block background
         block_bg = pg.Rect(left, top, self.block_width, self.block_height)
 
-        # pos (l) → defined later within update method
+        # left (l) → defined later within update method
         # top (t) → distance from top that's defined in update method
         # self.block_width → created in init
         # self.block_height → created in txt_bg method
 
-        pg.draw.rect(screen, 'White', block_bg, 0, 5)
-        # 🌱 ^ this line blits the blocks to the screen
+        pg.draw.rect(screen, 'White', block_bg, 0, 5) # blits the blocks to the screen
 
         # text
         text = self.font.render(str(item_name), False, 'Black')
         text_rect = text.get_rect(bottomleft = (block_bg.left + 40, block_bg.bottom - 60))
-        screen.blit(text, text_rect)
-         # 🌱 ^ this line blits the text to the screen
+        screen.blit(text, text_rect) # blits the text to the screen
     
         # amounts
         amount_text = self.font.render(str(amount), False, 'Black')
         amount_block = amount_text.get_rect(bottomleft = (block_bg.left + 40, block_bg.bottom - 20))
-        screen.blit(amount_text, amount_block)
+        screen.blit(amount_text, amount_block) # blits the text to the screen
 
         # images
-        img_position = img.get_rect(center = (block_bg.centerx-10, block_bg.centery-40)) # 🐋
-        screen.blit(img, img_position) # 🐋
+        img_position = img.get_rect(center = (block_bg.centerx-10, block_bg.centery-40)) # img positioning based off the center of the block
+        screen.blit(img, img_position)
         
         if chosen:
-            pg.draw.rect(screen, 'black', block_bg, 6, 5) # border when item is selected (this doesn't really do much
+            pg.draw.rect(screen, 'black', block_bg, 6, 5) # creating the border when an item is selected
             
 # ___________________________________________________________________________________________________________________________ 
             
@@ -126,22 +126,19 @@ class Inventory:
 
         for item_index, item_name in enumerate(self.item_names):
             
-            if item_index <= 2:
+            if item_index <= 2: # checking if the item is in the first row
                 top = self.top + self.v_space
                 left = self.background.left + (self.block_width * item_index) + (self.h_space * (item_index + 1))
-                # img_position = (self.background.left + (self.block_width * self.index) + (self.h_space * (self.index + 1) + 20), top)
-                # + 20 is just for an inden
+                # left is based of the amount of blocks (self.block_width * item_index) and the horizontal spaces btwn them
    
-            if item_index >= 3:
+            if item_index >= 3: # checking if the item is in the second row
                 top = self.top + self.v_space + self.block_height + self.v_space
                 left = self.background.left + (self.block_width * (item_index-3)) + (self.h_space * ((item_index-3) + 1))
-                # img_position = (self.background.left + (self.block_width * item_name.index) + (self.h_space * (self.index + 1) + 20), top)
-            
 
-            # img
-            img_link = self.images[item_index] 
-            img = pg.image.load(img_link) 
-            img=pg.transform.scale(img,(120,120))
+            # image
+            img_link = self.images[item_index] # getting correct file name for the specific item's corresponding image
+            img = pg.image.load(img_link) # blitting this to the screen
+            img = pg.transform.scale(img,(120,120)) # resizing
 
             # amount
             amount_list = list(self.character.crop_stuff.values()) + list(self.character.seed_stuff.values())
