@@ -45,7 +45,7 @@ _Week 3 (May 7 - 13)_  → Map/Land
 _Week 4 (May 14 -20)_ → Barriers/Collisions 
  - Collision with buildings
       - Character able to enter house and go inside  🦋 AS
-      - When character comes in contact with Farmers market, have some secondary page pop up ( right now focus on page actually showing up - further details will be coded  week 5) ❗❗ AM (PLAN)
+      - When character comes in contact with Farmers market, have some secondary page pop up ( right now focus on page actually showing up - further details will be coded  week 5) 🌷
       - Code button - so when pressed it leads to the pop up secondary page 🌷
  - Collision with trees
       - When the character collides with trees, have it so  they cannot just walk through it. 🦋 AS
@@ -67,7 +67,7 @@ _Week 5 (May 21 - 27)_ → Crops + Inventory
       -  and after it disappears off the screen 🦋 AS
     
  - Code inventory:
-      - Will need feature where we can select seeds that we can use to plant AM❗❗
+      - Will need feature where we can select seeds that we can use to plant AM 🌷
       - Will need to be able to pick other tools and use 🦋 AS
 
 _Week 6 (May 28 - Jun 3)_ →  Inventory + Farmers Market
@@ -79,10 +79,10 @@ _Week 6 (May 28 - Jun 3)_ →  Inventory + Farmers Market
  - ability to use gardening hoe 🦋 AS
  - photo edit character using hoe sprite animations 🦋 AS
  - connect gardening hoe use certain key input AND only when we in "farmable area 🦋 AS
-- Farmers market:❗❗ AM (PLAN)
-      - Code feature where character can go and sell off their farming goods ❗❗
+- Farmers market:🌷 AM (PLAN)
+      - Code feature where character can go and sell off their farming goods
       - This is so they can make money
-      - Code feature where they can purchase goods ❗❗
+      - Code feature where they can purchase goods 🌷
         - Seeds, crops, flowers 
 
 _Week 7 (June 4 - 10) _→ Farmers market + extra features 
