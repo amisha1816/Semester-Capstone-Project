@@ -25,8 +25,8 @@ Also, we need to add game_state.main_game() to our original while loop so we can
  Source: https://www.youtube.com/watch?v=Q5Qyk-05sc4 
  Reason: Learning to code pygame logic 
  
- Website:
- Source: https://www.pygame.org/docs/tut/newbieguide.html
+ Website: Pygame Documentation
+ Source: https://www.pygame.org/docs/tuts/documentation.html
  Reason: Pygame basics 
  
 Website: Newbie Guide to Pygame
