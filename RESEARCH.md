@@ -2,7 +2,6 @@
 
 | Video/Website | Source | Reason |
 | --- | --- | --- |
-| Creating a Stardew Valley inspired game in Python | https://www.youtube.com/watch?v=T4IX36sP_0c&t=16497s  | Wanted an introduction to creating a farming game on python |
 | Python / Pygame Tutorial: Creating surfaces and rectangles (also moving stuff) | https://www.youtube.com/watch?v=Wdyn1uGkRAU&t=203s | Learning how surfaces and rectangles work in Pygame  |
 | Create Buttons in PyGame! (Python Button Class Tutorial) | https://www.youtube.com/watch?v=16DM5Eem0cI&t=1152s | Reason: Learning how to create a button |
 | HOW TO MAKE A MENU SCREEN IN PYGAME! | https://www.youtube.com/watch?v=GMBqjxcKogA&t=175s | Learning how to create a button |
@@ -15,6 +14,7 @@
 | Learning how to use OOP with Pygame | https://www.youtube.com/watch?v=xfnRywBv5VM | Helps with learning how pygame is used with object oriented programming |
 | A guide to level creation with Tiled [ + how to use it with pygame ] | https://www.youtube.com/watch?v=N6xqCwblyiw&t=2350s | Learning how to use Tile Editor |  
 | I finally added FARMING to my FARMING game! Exo Colony Devlog #13 | https://www.youtube.com/watch?v=n5BB0CvulBg | Learning farming logic |
+| Creating a Stardew Valley inspired game in Python | https://www.youtube.com/watch?v=T4IX36sP_0c&t=16497s  | Wanted an introduction to creating a farming game on python |
 | Sprite Module Introdution | https://www.pygame.org/docs/tut/SpriteIntro.html | Explained how sprite groups work in pygame |
 | Cute Girl free sprites | https://www.gameart2d.com/cute-girl-free-sprites.html | We used their spirte sheets |
 | Sprout Lands  | https://cupnooble.itch.io/sprout-lands-asset-pack | We used their tilesets to build the map |
